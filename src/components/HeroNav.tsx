@@ -132,7 +132,7 @@ export function HeroNav({
               style={{ animationDelay: `${80 + items.length * 35}ms` }}
             >
               <a
-                href="https://github.com/amirjvm"
+                href="https://github.com/amiraliverse"
                 target="_blank"
                 rel="noreferrer noopener"
                 className={`${PILL} gap-2 px-4 py-2.5 text-xs font-medium`}

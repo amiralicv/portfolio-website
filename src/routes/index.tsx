@@ -13,16 +13,17 @@ import {
 import { useEffect, useRef } from "react";
 import BorderGlow from "@/components/BorderGlow";
 import { HeroNav } from "@/components/HeroNav";
-import MagicBento from "@/components/MagicBento";
+import ProjectSlider from "@/components/ProjectSlider";
 import { SceneBackground } from "@/components/SceneBackground";
 import { Reveal } from "@/components/Reveal";
-import SpecularButton from "@/components/SpecularButton";
-import { useLenis } from "@/hooks/use-lenis";
+import ContactLinks from "@/components/ContactLinks";
+import ProfileCard from "@/components/ProfileCard";
+import { getLenis, useLenis } from "@/hooks/use-lenis";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Amirali Abbasi — Software Engineer" },
+      { title: "Amirali Abbasi" },
       {
         name: "description",
         content:
@@ -65,57 +66,37 @@ const SKILL_GROUPS = [
   {
     title: "Language & Core",
     icon: SquareTerminal,
-    items: [
-      "Java fundamentals",
-      "OOP",
-      "Interfaces",
-      "Collections",
-      "Exception handling",
-      "Multithreading basics",
-      "Basic Golang",
-    ],
+    items: ["Java", "OOP", "Collections", "Exception handling"],
   },
   {
-    title: "Spring Ecosystem",
+    title: "Spring",
     icon: Leaf,
-    items: [
-      "Spring Core",
-      "DI / Beans / Context",
-      "Spring Boot",
-      "REST API",
-      "Middleware",
-      "Status codes",
-      "Basic XML",
-    ],
+    items: ["Spring Boot", "REST APIs", "Dependency injection"],
   },
   {
     title: "Data",
     icon: Database,
-    items: [
-      "JPA",
-      "Repositories",
-      "Entity mapping",
-      "ORM",
-      "SQL",
-      "PostgreSQL",
-      "Basic ACID",
-      "Caching basics",
-    ],
+    items: ["SQL", "PostgreSQL", "JPA"],
   },
   {
     title: "Tooling",
     icon: Wrench,
-    items: ["Git", "IntelliJ IDEA", "Maven", "Apidog / Postman", "Basic Docker", "YAML"],
+    items: ["Git", "Maven", "IntelliJ IDEA", "Postman", "Docker basics"],
   },
   {
     title: "Frontend touch",
     icon: LayoutTemplate,
-    items: ["HTML", "CSS / Tailwind", "Basic JavaScript"],
+    items: ["HTML", "CSS / Tailwind", "JavaScript basics"],
   },
   {
     title: "AI",
     icon: Bot,
-    items: ["Claude Code", "AI development", "Agentic AI", "LLMs"],
+    items: ["Claude Code", "Spring AI"],
+  },
+  {
+    title: "Languages",
+    icon: LanguagesIcon,
+    items: ["Persian (native)", "English (70–80%)"],
   },
 ];
 
@@ -129,27 +110,39 @@ const HIGHLIGHTS = [
 
 const PROJECTS = [
   {
+    title: "Parvazi Gold",
+    description:
+      "Trading dashboard PWA for buying and selling gold and coins — live pricing, order history and an AI trading assistant.",
+    href: "https://parvazigold.ir/",
+    image: "/projects/parvazigold.webp",
+    label: "In progress",
+  },
+  {
     title: "OmidPay",
     description:
       "Iranian electronic payment gateway — collaborated on backend services for smart POS/card-reader payments and financial management tooling.",
     href: "https://omidpayment.ir/",
+    image: "/projects/omidpay.webp",
     label: "Collaborated",
-  },
-  {
-    title: "Parvazi Gold",
-    description:
-      "Trading dashboard PWA for buying and selling gold and coins — live pricing, order history and an AI trading assistant.",
-    href: "https://pwa.parvazigold.ir/",
-    label: "In progress",
   },
   {
     title: "NovaStore",
     description:
       "E-commerce platform built for my GitHub portfolio — product catalog, cart and checkout with a Java Spring Boot backend.",
-    href: "https://github.com/amirjvm",
+    href: "https://github.com/amiraliverse",
+    image: "/projects/novastore.webp",
     label: "In progress",
   },
 ];
+
+// Same scroll as the nav: Lenis when smooth scrolling is on, a jump otherwise.
+function scrollToContact() {
+  const target = document.getElementById("contact");
+  if (!target) return;
+  const lenis = getLenis();
+  if (lenis) lenis.scrollTo(target, { offset: -96 });
+  else window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 96 });
+}
 
 function Portfolio() {
   useLenis();
@@ -207,7 +200,7 @@ function Portfolio() {
                 See experience
               </a>
               <a
-                href="https://github.com/amirjvm"
+                href="https://github.com/amiraliverse"
                 target="_blank"
                 rel="noreferrer noopener"
                 className="flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
@@ -255,34 +248,51 @@ function Portfolio() {
         <div className="mx-auto w-full max-w-5xl px-5 sm:px-8">
           {/* About */}
           <Section id="about" title="About me" kicker="01">
-            <div className="grid gap-6 md:grid-cols-2">
-              <Reveal>
-                <BorderGlow {...GLOW} animated className="h-full">
-                  <div className="p-7 sm:p-9">
-                    <h3 className="text-lg font-semibold">Where I'm coming from</h3>
-                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                      I spent 9 months at a software company as a Java backend developer. The first
-                      4 months went into Java Core fundamentals and getting used to the team's
-                      Scrum-based workflow. After that I moved onto Spring and Spring Boot tasks —
-                      integrating third-party APIs like KYC facial recognition, payment services and
-                      inquiry services. My last task there was an SMS notification system for a
-                      customer loyalty program, triggered by business rules.
-                    </p>
-                  </div>
-                </BorderGlow>
+            <div className="grid items-center gap-8 md:grid-cols-[auto_1fr]">
+              <Reveal className="mx-auto">
+                <ProfileCard
+                  avatarUrl="/profile.webp"
+                  miniAvatarUrl="/avatar.webp"
+                  pixelColors="#bbf7d0,#4ade80,#16a34a"
+                  enableTilt={false}
+                  name="Amirali Abbasi"
+                  title="Java Backend Developer"
+                  handle="amiraliverse"
+                  status="Open to work"
+                  contactText="Contact me"
+                  innerGradient="linear-gradient(145deg, #0b2a1a8c 0%, #22c55e33 100%)"
+                  behindGlowColor="rgba(34, 197, 94, 0.55)"
+                  onContactClick={scrollToContact}
+                />
               </Reveal>
               <Reveal delay={120}>
-                <BorderGlow {...GLOW} className="h-full">
+                <BorderGlow {...GLOW} className="no-glow">
                   <div className="p-7 sm:p-9">
-                    <h3 className="text-lg font-semibold">Where I'm going</h3>
-                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                      I want depth, not just breadth: understanding not only how to build APIs and
-                      services with Java and Spring Boot, but why they work — data structures and
-                      algorithms, SOLID, design patterns and DDD, reliable database design, secure
-                      and well-tested systems. Beyond the application layer I'm expanding into cloud
-                      infrastructure, containerization, CI/CD and distributed systems, and I
-                      strongly prefer learning inside a real team.
-                    </p>
+                    <div className="space-y-4 text-sm leading-relaxed text-muted-foreground">
+                      <p>
+                        I spent 9 months as a Java backend developer — the first 4 months on Java
+                        Core fundamentals and adapting to the team's Scrum workflow, then moving
+                        into Spring Boot work: integrating third-party APIs like KYC facial
+                        recognition, payment services, and inquiry services, and building a
+                        business-rule-triggered SMS notification system for a customer loyalty
+                        program. That role ended when the war disrupted the company.
+                      </p>
+                      <p>
+                        I'm using this gap deliberately to go deeper, not just wider: not only how
+                        to build APIs and services with Java and Spring Boot, but why they work —
+                        data structures and algorithms, SOLID, design patterns and DDD, reliable
+                        database design, and secure, well-tested systems.
+                      </p>
+                      <p>
+                        I love the JVM family as a whole. I'm also genuinely interested in AI — both
+                        developing fast without sacrificing depth of understanding, and building
+                        agents, including using Spring AI for modern applications. Beyond the
+                        application layer, I'm expanding into deployment and server management,
+                        containerization, and CI/CD — and this drive to learn is constant in me, not
+                        just something that shows up on a team, though I do strongly prefer learning
+                        alongside one.
+                      </p>
+                    </div>
                   </div>
                 </BorderGlow>
               </Reveal>
@@ -291,111 +301,96 @@ function Portfolio() {
 
           {/* Experience */}
           <Section id="experience" title="Experience" kicker="02">
-            <Reveal>
-              <BorderGlow {...GLOW}>
-                <div className="p-7 sm:p-10">
-                  <div className="flex flex-wrap items-baseline justify-between gap-3">
-                    <div>
-                      <h3 className="text-xl font-semibold">
-                        Junior Java Backend Developer (Intern)
-                      </h3>
-                      <p className="mt-1 text-sm text-primary">Electronic Taban Software Company</p>
+            <div className="space-y-6">
+              <Reveal>
+                <BorderGlow {...GLOW}>
+                  <div className="p-7 sm:p-10">
+                    <div className="flex flex-wrap items-baseline justify-between gap-3">
+                      <h3 className="text-xl font-semibold">Independent Projects</h3>
+                      <p className="font-mono text-xs tracking-widest text-muted-foreground uppercase">
+                        2026 — Present
+                      </p>
                     </div>
-                    <p className="font-mono text-xs tracking-widest text-muted-foreground uppercase">
-                      2025 — 2026 · 9 months
+                    <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
+                      Designing and building production-style backend systems independently (Spring
+                      Boot, DDD, CI/CD, containerization) and an AI agent using Spring AI. The code
+                      is private — I'll show it on request.
                     </p>
                   </div>
-                  <ul className="mt-7 space-y-4">
-                    {HIGHLIGHTS.map((h) => (
-                      <li
-                        key={h}
-                        className="flex gap-3 text-sm leading-relaxed text-muted-foreground"
-                      >
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </BorderGlow>
-            </Reveal>
+                </BorderGlow>
+              </Reveal>
+              <Reveal delay={120}>
+                <BorderGlow {...GLOW}>
+                  <div className="p-7 sm:p-10">
+                    <div className="flex flex-wrap items-baseline justify-between gap-3">
+                      <div>
+                        <h3 className="text-xl font-semibold">
+                          Junior Java Backend Developer (Intern)
+                        </h3>
+                        <p className="mt-1 text-sm text-primary">
+                          Electronic Taban Software Company
+                        </p>
+                      </div>
+                      <p className="font-mono text-xs tracking-widest text-muted-foreground uppercase">
+                        2025 — 2026 · 9 months
+                      </p>
+                    </div>
+                    <ul className="mt-7 space-y-4">
+                      {HIGHLIGHTS.map((h) => (
+                        <li
+                          key={h}
+                          className="flex gap-3 text-sm leading-relaxed text-muted-foreground"
+                        >
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                          <span>{h}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </BorderGlow>
+              </Reveal>
+            </div>
           </Section>
 
           {/* Projects */}
           <Section id="projects" title="Projects" kicker="03">
             <Reveal>
-              <MagicBento
-                items={PROJECTS}
-                glowColor="34, 197, 94"
-                spotlightRadius={280}
-                particleCount={8}
-                enableTilt={false}
-              />
+              <ProjectSlider projects={PROJECTS} />
             </Reveal>
           </Section>
 
           {/* Skills */}
           <Section id="skills" title="Skills" kicker="04">
-            <div className="grid gap-5 sm:grid-cols-2">
+            <dl className="border-b border-border">
               {SKILL_GROUPS.map((group, i) => (
-                <Reveal key={group.title} delay={i * 80}>
-                  <BorderGlow {...GLOW} borderRadius={20} glowRadius={30} className="h-full">
-                    <div className="p-6 sm:p-7">
-                      <h3 className="flex items-center gap-2 font-mono text-xs tracking-[0.2em] text-primary uppercase">
-                        <group.icon className="size-4 shrink-0" />
-                        {group.title}
-                      </h3>
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        {group.items.map((s) => (
-                          <span
-                            key={s}
-                            className="rounded-full border border-border bg-secondary px-3 py-1.5 text-xs text-secondary-foreground"
-                          >
-                            {s}
-                          </span>
-                        ))}
-                      </div>
-                      {group.title === "Frontend touch" && (
-                        <p className="mt-4 flex items-start gap-1.5 text-[11px] text-muted-foreground">
-                          <CornerDownRight className="mt-0.5 size-3.5 shrink-0 text-primary" />
-                          <span>
-                            built this whole portfolio with{" "}
-                            <span className="text-primary">Claude</span> — and, arguably, great
-                            prompting skills.
-                          </span>
-                        </p>
-                      )}
-                    </div>
-                  </BorderGlow>
+                <Reveal
+                  key={group.title}
+                  delay={i * 60}
+                  className="grid gap-2 border-t border-border py-5 sm:grid-cols-[220px_1fr] sm:gap-6"
+                >
+                  <dt className="flex items-center gap-2 font-mono text-xs tracking-[0.2em] text-primary uppercase">
+                    <group.icon className="size-4 shrink-0" aria-hidden />
+                    {group.title}
+                  </dt>
+                  <dd className="text-sm leading-relaxed text-foreground/90">
+                    {group.items.join(" · ")}
+                    {group.title === "Frontend touch" && (
+                      <span className="mt-2 flex items-start gap-1.5 text-[11px] text-muted-foreground">
+                        <CornerDownRight
+                          className="mt-0.5 size-3.5 shrink-0 text-primary"
+                          aria-hidden
+                        />
+                        <span>
+                          built this whole portfolio with{" "}
+                          <span className="text-primary">Claude</span> — and, arguably, great
+                          prompting skills.
+                        </span>
+                      </span>
+                    )}
+                  </dd>
                 </Reveal>
               ))}
-              <Reveal delay={SKILL_GROUPS.length * 80}>
-                <BorderGlow {...GLOW} borderRadius={20} glowRadius={30} className="h-full">
-                  <div className="p-6 sm:p-7">
-                    <h3 className="flex items-center gap-2 font-mono text-xs tracking-[0.2em] text-primary uppercase">
-                      <LanguagesIcon className="size-4 shrink-0" />
-                      Languages
-                    </h3>
-                    <div className="mt-5">
-                      <div className="flex items-baseline justify-between text-sm">
-                        <span>English</span>
-                        <span className="text-muted-foreground">70%</span>
-                      </div>
-                      <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-secondary">
-                        <div className="h-full w-[70%] rounded-full bg-primary" />
-                      </div>
-                      <div className="mt-5 flex items-baseline justify-between text-sm">
-                        <span>Persian</span>
-                        <span className="text-muted-foreground">Native</span>
-                      </div>
-                      <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-secondary">
-                        <div className="h-full w-full rounded-full bg-primary" />
-                      </div>
-                    </div>
-                  </div>
-                </BorderGlow>
-              </Reveal>
-            </div>
+            </dl>
           </Section>
 
           {/* Education */}
@@ -414,7 +409,12 @@ function Portfolio() {
                 },
               ].map((e, i) => (
                 <Reveal key={e.degree} delay={i * 100}>
-                  <BorderGlow {...GLOW} borderRadius={20} glowRadius={30} className="h-full">
+                  <BorderGlow
+                    {...GLOW}
+                    borderRadius={20}
+                    glowRadius={30}
+                    className="no-glow h-full"
+                  >
                     <div className="p-6 sm:p-8">
                       <p className="font-mono text-xs tracking-widest text-muted-foreground uppercase">
                         {e.years}
@@ -440,47 +440,8 @@ function Portfolio() {
                     Open to junior Java / Spring Boot roles where I can grow inside a real
                     engineering team.
                   </p>
-                  <div className="mt-8 flex flex-wrap justify-center gap-3">
-                    <SpecularButton
-                      href="mailto:abbasigudarzi@gmail.com"
-                      size="md"
-                      radius={999}
-                      lineColor="#6ee7a0"
-                      baseColor="#2a5a41"
-                      textColor="#eafff2"
-                      tint="#4ade80"
-                      tintOpacity={0.1}
-                      shineSize={14}
-                      proximity={220}
-                    >
-                      abbasigudarzi@gmail.com
-                    </SpecularButton>
-                    <SpecularButton
-                      href="tel:+989102179870"
-                      size="md"
-                      radius={999}
-                      lineColor="#38d9c4"
-                      baseColor="#2a5a41"
-                      textColor="#eafff2"
-                      shineSize={14}
-                      proximity={220}
-                    >
-                      +98 910 217 9870
-                    </SpecularButton>
-                    <SpecularButton
-                      href="https://github.com/amirjvm"
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      size="md"
-                      radius={999}
-                      lineColor="#a7f3d0"
-                      baseColor="#2a5a41"
-                      textColor="#eafff2"
-                      shineSize={14}
-                      proximity={220}
-                    >
-                      github.com/amirjvm
-                    </SpecularButton>
+                  <div className="mt-8">
+                    <ContactLinks />
                   </div>
 
                   <p className="mt-8 font-mono text-xs tracking-widest text-muted-foreground uppercase">
