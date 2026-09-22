@@ -166,7 +166,8 @@ function Portfolio() {
       <HeroNav items={NAV} heroRef={heroRef} />
 
       {/* Hero — the only part of the page that shows the animated background */}
-      <div id="top" className="relative z-10 mx-auto w-full max-w-5xl px-5 sm:px-8">
+      {/* z-20: above the hero-fade strip below, so text never sinks into the fade on short screens. */}
+      <div id="top" className="relative z-20 mx-auto w-full max-w-5xl px-5 sm:px-8">
         <section ref={heroRef} className="flex min-h-[88vh] flex-col justify-center py-24">
           <Reveal>
             <p className="font-mono text-xs tracking-[0.35em] text-primary uppercase">
