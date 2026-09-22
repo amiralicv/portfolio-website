@@ -96,7 +96,7 @@ const SKILL_GROUPS = [
   {
     title: "Languages",
     icon: LanguagesIcon,
-    items: ["Persian (native)", "English (70–80%)"],
+    items: ["Persian (native)", "English (advanced)"],
   },
 ];
 
