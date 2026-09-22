@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "src/components/ProfileCard.css"
+        ],
+        "createdAt": "2026-09-22T05:37:45.078Z",
+        "reason": "claude: stock React Bits ProfileCard holographic name/title, matches existing hero .text-gradient"
+      }
+    ]
+  }
+}

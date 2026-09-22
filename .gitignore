@@ -30,3 +30,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local tool output
+graphify-out/
+.impeccable/hook.cache.json
