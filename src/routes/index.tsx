@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
+  ArrowUpRight,
   Bot,
-  CornerDownRight,
   Database,
   Github,
   LayoutTemplate,
@@ -169,11 +169,6 @@ function Portfolio() {
       {/* z-20: above the hero-fade strip below, so text never sinks into the fade on short screens. */}
       <div id="top" className="relative z-20 mx-auto w-full max-w-5xl px-5 sm:px-8">
         <section ref={heroRef} className="flex min-h-[88vh] flex-col justify-center py-24">
-          <Reveal>
-            <p className="font-mono text-xs tracking-[0.35em] text-primary uppercase">
-              Tehran, Iran · Available for work
-            </p>
-          </Reveal>
           <Reveal delay={80}>
             <h1 className="mt-6 text-5xl leading-[0.95] font-semibold sm:text-7xl">
               <span className="text-gradient">Amirali Abbasi</span>
@@ -213,8 +208,20 @@ function Portfolio() {
           </Reveal>
           <Reveal delay={320}>
             <dl className="mt-16 grid grid-cols-2 gap-6 border-t border-border pt-8 sm:grid-cols-4">
+              {/* Availability badge takes the first slot the "9 mo" stat used to hold. */}
+              <div>
+                <dt>
+                  <span className="label-glow inline-flex items-center gap-2 rounded-full border bg-primary/5 px-3 py-1.5 text-sm font-medium text-primary">
+                    <span className="relative flex size-2">
+                      <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-60 motion-reduce:animate-none" />
+                      <span className="relative inline-flex size-2 rounded-full bg-primary" />
+                    </span>
+                    Available for work
+                  </span>
+                </dt>
+                <dd className="mt-2 text-xs text-muted-foreground">Tehran, Iran</dd>
+              </div>
               {[
-                ["9 mo", "Industry experience"],
                 ["Java · Spring Boot", "Main stack"],
                 ["B.Eng", "Computer Engineering"],
                 ["M.Sc", "Software Engineering (ongoing)"],
@@ -314,8 +321,7 @@ function Portfolio() {
                     </div>
                     <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
                       Designing and building production-style backend systems independently (Spring
-                      Boot, DDD, CI/CD, containerization) and an AI agent using Spring AI. The code
-                      is private — I'll show it on request.
+                      Boot, DDD, CI/CD, containerization) and an AI agent using Spring AI.
                     </p>
                   </div>
                 </BorderGlow>
@@ -375,19 +381,6 @@ function Portfolio() {
                   </dt>
                   <dd className="text-sm leading-relaxed text-foreground/90">
                     {group.items.join(" · ")}
-                    {group.title === "Frontend touch" && (
-                      <span className="mt-2 flex items-start gap-1.5 text-[11px] text-muted-foreground">
-                        <CornerDownRight
-                          className="mt-0.5 size-3.5 shrink-0 text-primary"
-                          aria-hidden
-                        />
-                        <span>
-                          built this whole portfolio with{" "}
-                          <span className="text-primary">Claude</span> — and, arguably, great
-                          prompting skills.
-                        </span>
-                      </span>
-                    )}
                   </dd>
                 </Reveal>
               ))}
@@ -430,28 +423,81 @@ function Portfolio() {
           </Section>
 
           {/* Contact */}
-          <Section id="contact" title="Contact" kicker="06">
-            <Reveal>
-              <BorderGlow {...GLOW} glowRadius={55} glowIntensity={1.2}>
-                <div className="p-8 text-center sm:p-14">
-                  <h3 className="text-3xl font-semibold sm:text-4xl">
-                    <span className="text-gradient">Let's build the backend.</span>
-                  </h3>
-                  <p className="mx-auto mt-4 max-w-md text-sm text-muted-foreground">
-                    Open to junior Java / Spring Boot roles where I can grow inside a real
-                    engineering team.
+          {/*
+            No card here: the section is the stage. Corner brackets draw the
+            frame, a slow aura turns behind the type, and the email is the
+            single loudest thing on the screen.
+          */}
+          <section
+            id="contact"
+            className="relative flex min-h-[calc(100svh-6rem)] flex-col justify-center py-16"
+          >
+            <div aria-hidden className="contact-aura" />
+
+            <div className="relative">
+              {(
+                [
+                  ["left-0 top-0 rounded-tl-[2rem] border-t border-l", 0],
+                  ["right-0 top-0 rounded-tr-[2rem] border-t border-r", 90],
+                  ["left-0 bottom-0 rounded-bl-[2rem] border-b border-l", 180],
+                  ["right-0 bottom-0 rounded-br-[2rem] border-b border-r", 270],
+                ] as const
+              ).map(([position, delay]) => (
+                <span
+                  key={position}
+                  aria-hidden
+                  style={{ animationDelay: `${delay}ms` }}
+                  className={`frame-corner absolute size-16 border-primary/45 sm:size-24 ${position}`}
+                />
+              ))}
+
+              <div className="px-6 py-8 text-center sm:px-16 sm:py-10">
+                <Reveal>
+                  <p className="font-mono text-xs tracking-[0.35em] text-primary uppercase">
+                    06 — Contact
                   </p>
-                  <div className="mt-8">
+                </Reveal>
+
+                <Reveal delay={90}>
+                  <h2 className="mx-auto mt-7 max-w-3xl text-4xl leading-[1.05] font-semibold text-balance sm:text-6xl lg:text-7xl">
+                    Let's build the backend.
+                  </h2>
+                </Reveal>
+
+                <Reveal delay={170}>
+                  <p className="mx-auto mt-6 max-w-md text-base text-muted-foreground">
+                    Open to work as a Java backend developer.
+                  </p>
+                </Reveal>
+
+                <Reveal delay={250}>
+                  <a
+                    href="mailto:abbasigudarzi@gmail.com"
+                    className="group mt-10 inline-flex flex-wrap items-center justify-center gap-3 text-xl font-medium break-all text-foreground transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:text-3xl"
+                  >
+                    <span className="link-sweep">abbasigudarzi@gmail.com</span>
+                    <ArrowUpRight className="size-6 shrink-0 text-primary transition-transform duration-300 ease-out group-hover:-translate-y-1 group-hover:translate-x-1" />
+                  </a>
+                </Reveal>
+
+                <Reveal delay={330}>
+                  <div className="mt-11">
                     <ContactLinks />
                   </div>
+                </Reveal>
 
-                  <p className="mt-8 font-mono text-xs tracking-widest text-muted-foreground uppercase">
-                    Tehran, Region 2, Sattar-khan
+                <Reveal delay={410}>
+                  <p className="mt-11 flex items-center justify-center gap-2 font-mono text-xs tracking-widest text-muted-foreground uppercase">
+                    <span className="relative flex size-1.5">
+                      <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-60 motion-reduce:animate-none" />
+                      <span className="relative inline-flex size-1.5 rounded-full bg-primary" />
+                    </span>
+                    Tehran · Available for work
                   </p>
-                </div>
-              </BorderGlow>
-            </Reveal>
-          </Section>
+                </Reveal>
+              </div>
+            </div>
+          </section>
 
           <footer className="border-t border-border py-10 text-center text-xs text-muted-foreground">
             © {new Date().getFullYear()} Amirali Abbasi — Java Backend Engineer

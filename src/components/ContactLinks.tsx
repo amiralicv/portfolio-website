@@ -1,8 +1,6 @@
-import { Phone } from "lucide-react";
-
 // Brand marks are the official Simple Icons paths (simpleicons.org, CC0), inlined
-// so there is no icon package to ship for seven glyphs.
-const CONTACTS: { label: string; href: string; path?: string }[] = [
+// so there is no icon package to ship for six glyphs.
+const CONTACTS: { label: string; href: string; path: string }[] = [
   {
     label: "GitHub",
     href: "https://github.com/amiraliverse",
@@ -22,10 +20,6 @@ const CONTACTS: { label: string; href: string; path?: string }[] = [
     label: "Gmail",
     href: "mailto:abbasigudarzi@gmail.com",
     path: "M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z",
-  },
-  {
-    label: "Phone",
-    href: "tel:+989368319240",
   },
   {
     label: "Instagram",
@@ -48,18 +42,14 @@ export default function ContactLinks() {
           <li key={label}>
             <a
               href={href}
-              aria-label={label === "Phone" ? "Call +98 936 831 9240" : label}
-              title={label === "Phone" ? "+98 936 831 9240" : label}
+              aria-label={label}
+              title={label}
               {...(external ? { target: "_blank", rel: "noreferrer noopener" } : {})}
               className="flex size-14 items-center justify-center rounded-full border border-border bg-secondary/60 text-foreground/80 transition duration-200 hover:-translate-y-0.5 hover:border-primary/60 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
-              {path ? (
-                <svg viewBox="0 0 24 24" className="size-5" fill="currentColor" aria-hidden>
-                  <path d={path} />
-                </svg>
-              ) : (
-                <Phone className="size-5" aria-hidden />
-              )}
+              <svg viewBox="0 0 24 24" className="size-5" fill="currentColor" aria-hidden>
+                <path d={path} />
+              </svg>
             </a>
           </li>
         );

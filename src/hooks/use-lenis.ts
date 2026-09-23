@@ -8,6 +8,19 @@ let active: Lenis | null = null;
 /** Null when smooth scrolling is off — reduced motion, or not mounted yet. */
 export const getLenis = () => active;
 
+/**
+ * Where a section should land. A tall one starts under the nav; one that fits
+ * on screen — the full-height Contact stage — is centred instead, so nothing
+ * hangs below the fold after the jump.
+ */
+export function anchorOffset(target: HTMLElement) {
+  const NAV_GAP = 96;
+  const height = target.getBoundingClientRect().height;
+  const available = window.innerHeight - NAV_GAP;
+  // Fits under the bar → centre it in that space; otherwise start at the top.
+  return height <= available ? -(NAV_GAP + (available - height) / 2) : -NAV_GAP;
+}
+
 export function useLenis() {
   useEffect(() => {
     // Respect the OS setting: smooth scrolling is exactly the kind of motion
@@ -59,7 +72,7 @@ export function useLenis() {
 
       e.preventDefault();
       lenis.scrollTo(target, {
-        offset: -96,
+        offset: anchorOffset(target),
         duration: 1.3,
         easing: (t: number) => 1 - Math.pow(1 - t, 4),
       });

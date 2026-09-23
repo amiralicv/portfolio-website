@@ -1,6 +1,6 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { ArrowUpRight, Github, Mail, Menu, X } from "lucide-react";
-import { useCallback, useRef, useState, type RefObject } from "react";
+import { useCallback, useLayoutEffect, useRef, useState, type RefObject } from "react";
 import { getLenis } from "@/hooks/use-lenis";
 import { useScrollY } from "@/hooks/use-scroll";
 
@@ -19,26 +19,64 @@ export function HeroNav({
   items: NavItem[];
   heroRef: RefObject<HTMLElement | null>;
 }) {
-  const navRef = useRef<HTMLElement | null>(null);
   const [open, setOpen] = useState(false);
+  // Past the hero the bar tightens into a compact pill instead of disappearing,
+  // so there is still a way to navigate from a desktop screen.
+  const [compact, setCompact] = useState(false);
+  const [active, setActive] = useState(items[0]?.id ?? "");
+  const stateRef = useRef({ compact: false, active: items[0]?.id ?? "" });
 
   const onScroll = useCallback(
     (scrollY: number) => {
       const hero = heroRef.current;
-      const span = Math.max(1, (hero?.offsetHeight ?? window.innerHeight) * 0.75);
-      const p = Math.min(1, Math.max(0, scrollY / span));
-      const eased = p * p * (3 - 2 * p);
+      const heroEnd = (hero?.offsetHeight ?? window.innerHeight) * 0.6;
+      const isCompact = scrollY > heroEnd;
+      if (isCompact !== stateRef.current.compact) {
+        stateRef.current.compact = isCompact;
+        setCompact(isCompact);
+      }
 
-      const nav = navRef.current;
-      if (nav) {
-        nav.style.opacity = String(1 - eased);
-        nav.style.pointerEvents = eased >= 1 ? "none" : "auto";
+      // Whichever section's top has most recently passed under the bar wins.
+      // Matches where an anchor jump parks a section top (scroll-mt + nav height).
+      const line = scrollY + 240;
+      let current = items[0]?.id ?? "";
+      for (const item of items) {
+        const el = document.getElementById(item.id);
+        if (el && el.getBoundingClientRect().top + scrollY <= line) current = item.id;
+      }
+      // At the very bottom the last section's top may never cross the line, so
+      // claim it explicitly — otherwise Contact can never light up.
+      const atBottom = scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4;
+      if (atBottom) current = items[items.length - 1]?.id ?? current;
+
+      if (current !== stateRef.current.active) {
+        stateRef.current.active = current;
+        setActive(current);
       }
     },
-    [heroRef],
+    [heroRef, items],
   );
 
   useScrollY(onScroll);
+
+  // The highlight is one pill that slides to whichever tab is active, so the
+  // change reads as movement rather than two separate fades.
+  const listRef = useRef<HTMLUListElement | null>(null);
+  const linkRefs = useRef(new Map<string, HTMLAnchorElement>());
+  const [pill, setPill] = useState({ left: 0, width: 0, ready: false });
+
+  useLayoutEffect(() => {
+    const measure = () => {
+      const list = listRef.current;
+      const link = linkRefs.current.get(active);
+      if (!list || !link) return;
+      setPill({ left: link.offsetLeft, width: link.offsetWidth, ready: true });
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    if (listRef.current) observer.observe(listRef.current);
+    return () => observer.disconnect();
+  }, [active, compact, items]);
 
   const goTo = (id: string) => {
     setOpen(false);
@@ -66,22 +104,49 @@ export function HeroNav({
 
   return (
     <>
-      {/* Desktop — lives with the hero and dissolves once you scroll past it */}
+      {/* Desktop — z-30 keeps it above the hero panel so the links stay clickable */}
       <nav
-        ref={navRef}
-        className="fixed inset-x-0 top-0 z-20 hidden justify-center px-5 pt-6 sm:flex"
+        className={`fixed inset-x-0 top-0 z-30 hidden justify-center px-5 transition-all duration-500 ease-out sm:flex ${
+          compact ? "pt-3" : "pt-6"
+        }`}
       >
-        <ul className="flex w-max items-center gap-1 rounded-full border border-border bg-background/60 px-2 py-2 backdrop-blur-md">
-          {items.map((item) => (
-            <li key={item.id}>
-              <a
-                href={`#${item.id}`}
-                className="block rounded-full px-4 py-1.5 text-xs font-medium whitespace-nowrap text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
+        <ul
+          ref={listRef}
+          className={`nav-pill relative flex w-max items-center rounded-full border border-border bg-background/70 backdrop-blur-xl transition-all duration-500 ease-out ${
+            compact ? "gap-0.5 px-1.5 py-1.5" : "gap-1 px-2 py-2 lg:px-3 lg:py-2.5"
+          }`}
+        >
+          <span
+            aria-hidden
+            className="absolute top-1/2 left-0 h-[calc(100%-0.75rem)] rounded-full bg-secondary ring-1 ring-primary/35 transition-[transform,width,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none"
+            style={{
+              width: `${pill.width}px`,
+              transform: `translate(${pill.left}px, -50%)`,
+              opacity: pill.ready ? 1 : 0,
+            }}
+          />
+          {items.map((item) => {
+            const isActive = active === item.id;
+            return (
+              <li key={item.id}>
+                <a
+                  href={`#${item.id}`}
+                  ref={(el) => {
+                    if (el) linkRefs.current.set(item.id, el);
+                    else linkRefs.current.delete(item.id);
+                  }}
+                  aria-current={isActive ? "true" : undefined}
+                  className={`relative block rounded-full font-medium whitespace-nowrap transition-colors duration-300 ease-out focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:outline-none ${
+                    compact
+                      ? "px-3.5 py-1.5 text-xs"
+                      : "px-4 py-1.5 text-xs lg:px-5 lg:py-2 lg:text-sm"
+                  } ${isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`}
+                >
+                  {item.label}
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </nav>
 
