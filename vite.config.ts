@@ -22,7 +22,15 @@ export default defineConfig(async ({ command }): Promise<UserConfig> => {
   // nitro only participates in the build; loading it during `vite dev` is unnecessary.
   if (command === "build") {
     const { nitro } = await import("nitro/vite");
-    plugins.push(nitro({ defaultPreset: "cloudflare-module" }));
+    plugins.push(
+      nitro({
+        defaultPreset: "cloudflare-module",
+        // Rolldown can split TanStack Start's server code into two chunks that import
+        // each other; the worker then runs one before the other and every request 500s
+        // ("createCsrfMiddleware is not a function"). Keep source execution order.
+        rolldownConfig: { output: { strictExecutionOrder: true } },
+      }),
+    );
   }
 
   plugins.push(viteReact());
