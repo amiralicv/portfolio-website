@@ -1,4 +1,5 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog";
+import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, Github, Mail, Menu, X } from "lucide-react";
 import { useCallback, useLayoutEffect, useRef, useState, type RefObject } from "react";
 import { getLenis } from "@/hooks/use-lenis";
@@ -147,6 +148,18 @@ export function HeroNav({
               </li>
             );
           })}
+          {/* A separate page, not a section: sits after a divider, outside the sliding pill */}
+          <li aria-hidden className="mx-1 h-4 w-px bg-border" />
+          <li>
+            <Link
+              to="/learning"
+              className={`relative block rounded-full font-medium whitespace-nowrap text-primary transition-colors duration-300 ease-out hover:text-foreground focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:outline-none ${
+                compact ? "px-3.5 py-1.5 text-xs" : "px-4 py-1.5 text-xs lg:px-5 lg:py-2 lg:text-sm"
+              }`}
+            >
+              Learning
+            </Link>
+          </li>
         </ul>
       </nav>
 
@@ -190,11 +203,25 @@ export function HeroNav({
                   <ArrowUpRight className="size-5 shrink-0 text-muted-foreground transition-transform duration-200 ease-out group-active:-translate-y-0.5 group-active:translate-x-0.5" />
                 </button>
               ))}
+              <Link
+                to="/learning"
+                onClick={() => setOpen(false)}
+                style={{ animationDelay: `${80 + items.length * 35}ms` }}
+                className="menu-row-in group flex w-full items-center justify-between gap-4 border-b border-border/60 py-5 text-left transition-transform duration-150 ease-out active:scale-[0.98]"
+              >
+                <span className="flex items-baseline gap-4">
+                  <span className="font-mono text-[11px] tracking-[0.3em] text-primary">
+                    {String(items.length + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-2xl font-semibold text-primary">Learning</span>
+                </span>
+                <ArrowUpRight className="size-5 shrink-0 text-primary transition-transform duration-200 ease-out group-active:-translate-y-0.5 group-active:translate-x-0.5" />
+              </Link>
             </nav>
 
             <div
               className="menu-row-in mt-auto flex flex-wrap items-center gap-3 pt-10"
-              style={{ animationDelay: `${80 + items.length * 35}ms` }}
+              style={{ animationDelay: `${80 + (items.length + 1) * 35}ms` }}
             >
               <a
                 href="https://github.com/amiraliverse"

@@ -34,3 +34,4 @@ dist-ssr
 # Local tool output
 graphify-out/
 .impeccable/hook.cache.json
+.impeccable/review/

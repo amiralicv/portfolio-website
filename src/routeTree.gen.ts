@@ -10,11 +10,19 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LearningRouteRouteImport } from './routes/learning/route'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as LearningIndexRouteImport } from './routes/learning/index'
+import { Route as LearningSplatRouteImport } from './routes/learning/$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearningRouteRoute = LearningRouteRouteImport.update({
+  id: '/learning',
+  path: '/learning',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -22,30 +30,55 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LearningIndexRoute = LearningIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LearningRouteRoute,
+} as any)
+const LearningSplatRoute = LearningSplatRouteImport.update({
+  id: '/$',
+  path: '/$',
+  getParentRoute: () => LearningRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/learning': typeof LearningRouteRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/learning/$': typeof LearningSplatRoute
+  '/learning/': typeof LearningIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/learning/$': typeof LearningSplatRoute
+  '/learning': typeof LearningIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/learning': typeof LearningRouteRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/learning/$': typeof LearningSplatRoute
+  '/learning/': typeof LearningIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sitemap.xml'
+  fullPaths: '/' | '/learning' | '/sitemap.xml' | '/learning/$' | '/learning/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sitemap.xml'
-  id: '__root__' | '/' | '/sitemap.xml'
+  to: '/' | '/sitemap.xml' | '/learning/$' | '/learning'
+  id:
+    | '__root__'
+    | '/'
+    | '/learning'
+    | '/sitemap.xml'
+    | '/learning/$'
+    | '/learning/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LearningRouteRoute: typeof LearningRouteRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
@@ -58,6 +91,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/learning': {
+      id: '/learning'
+      path: '/learning'
+      fullPath: '/learning'
+      preLoaderRoute: typeof LearningRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -65,11 +105,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/learning/': {
+      id: '/learning/'
+      path: '/'
+      fullPath: '/learning/'
+      preLoaderRoute: typeof LearningIndexRouteImport
+      parentRoute: typeof LearningRouteRoute
+    }
+    '/learning/$': {
+      id: '/learning/$'
+      path: '/$'
+      fullPath: '/learning/$'
+      preLoaderRoute: typeof LearningSplatRouteImport
+      parentRoute: typeof LearningRouteRoute
+    }
   }
 }
 
+interface LearningRouteRouteChildren {
+  LearningSplatRoute: typeof LearningSplatRoute
+  LearningIndexRoute: typeof LearningIndexRoute
+}
+
+const LearningRouteRouteChildren: LearningRouteRouteChildren = {
+  LearningSplatRoute: LearningSplatRoute,
+  LearningIndexRoute: LearningIndexRoute,
+}
+
+const LearningRouteRouteWithChildren = LearningRouteRoute._addFileChildren(
+  LearningRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LearningRouteRoute: LearningRouteRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport

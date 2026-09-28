@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
+import { getLearningIndex } from "@/lib/learning";
 
-// TODO: replace with your project URL once a project name or custom domain is set.
-const BASE_URL = "";
+const BASE_URL = "https://amiraliabbasi.ir";
 
 interface SitemapEntry {
   path: string;
@@ -15,7 +15,18 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
-        const entries: SitemapEntry[] = [{ path: "/", changefreq: "monthly", priority: "1.0" }];
+        const { slugs, builtAt } = await getLearningIndex();
+        const lastmod = builtAt.slice(0, 10);
+        const entries: SitemapEntry[] = [
+          { path: "/", changefreq: "monthly", priority: "1.0" },
+          { path: "/learning", lastmod, changefreq: "weekly", priority: "0.8" },
+          ...slugs.map((s) => ({
+            path: `/learning/${s}`,
+            lastmod,
+            changefreq: "weekly" as const,
+            priority: "0.5",
+          })),
+        ];
 
         const urls = entries.map((e) =>
           [
