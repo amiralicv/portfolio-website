@@ -1,0 +1,559 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-28T10:22:07.654Z",
+  "title": "Design System: Amirali Abbasi — Portfolio and Learning",
+  "extensions": {
+    "colorMeta": {
+      "home-ground": {
+        "role": "neutral",
+        "displayName": "Pure Black Ground",
+        "canonical": "oklch(0.04 0 0)",
+        "tonalRamp": [
+          "oklch(0.15 0 0)",
+          "oklch(0.26 0 0)",
+          "oklch(0.37 0 0)",
+          "oklch(0.48 0 0)",
+          "oklch(0.6 0 0)",
+          "oklch(0.72 0 0)",
+          "oklch(0.84 0 0)",
+          "oklch(0.95 0 0)"
+        ]
+      },
+      "home-surface": {
+        "role": "neutral",
+        "displayName": "Leaf-Tinted Surface",
+        "canonical": "oklch(0.11 0.008 155)",
+        "tonalRamp": [
+          "oklch(0.15 0.008 155)",
+          "oklch(0.26 0.008 155)",
+          "oklch(0.37 0.008 155)",
+          "oklch(0.48 0.008 155)",
+          "oklch(0.6 0.008 155)",
+          "oklch(0.72 0.008 155)",
+          "oklch(0.84 0.008 155)",
+          "oklch(0.95 0.008 155)"
+        ]
+      },
+      "home-surface-raised": {
+        "role": "neutral",
+        "displayName": "Raised Surface",
+        "canonical": "oklch(0.16 0.01 155)",
+        "tonalRamp": [
+          "oklch(0.15 0.01 155)",
+          "oklch(0.26 0.01 155)",
+          "oklch(0.37 0.01 155)",
+          "oklch(0.48 0.01 155)",
+          "oklch(0.6 0.01 155)",
+          "oklch(0.72 0.01 155)",
+          "oklch(0.84 0.01 155)",
+          "oklch(0.95 0.01 155)"
+        ]
+      },
+      "home-ink": {
+        "role": "neutral",
+        "displayName": "Cool Ivory Ink",
+        "canonical": "oklch(0.97 0.008 150)",
+        "tonalRamp": [
+          "oklch(0.15 0.008 150)",
+          "oklch(0.26 0.008 150)",
+          "oklch(0.37 0.008 150)",
+          "oklch(0.48 0.008 150)",
+          "oklch(0.6 0.008 150)",
+          "oklch(0.72 0.008 150)",
+          "oklch(0.84 0.008 150)",
+          "oklch(0.95 0.008 150)"
+        ]
+      },
+      "home-ink-muted": {
+        "role": "neutral",
+        "displayName": "Muted Leaf Grey",
+        "canonical": "oklch(0.7 0.022 150)",
+        "tonalRamp": [
+          "oklch(0.15 0.022 150)",
+          "oklch(0.26 0.022 150)",
+          "oklch(0.37 0.022 150)",
+          "oklch(0.48 0.022 150)",
+          "oklch(0.6 0.022 150)",
+          "oklch(0.72 0.022 150)",
+          "oklch(0.84 0.022 150)",
+          "oklch(0.95 0.022 150)"
+        ]
+      },
+      "spring-leaf": {
+        "role": "primary",
+        "displayName": "Spring Leaf",
+        "canonical": "oklch(0.76 0.19 143)",
+        "tonalRamp": [
+          "oklch(0.15 0.19 143)",
+          "oklch(0.26 0.19 143)",
+          "oklch(0.37 0.19 143)",
+          "oklch(0.48 0.19 143)",
+          "oklch(0.6 0.19 143)",
+          "oklch(0.72 0.19 143)",
+          "oklch(0.84 0.19 143)",
+          "oklch(0.95 0.19 143)"
+        ]
+      },
+      "spring-leaf-ink": {
+        "role": "neutral",
+        "displayName": "Dark Leaf Ink",
+        "canonical": "oklch(0.08 0.01 155)",
+        "tonalRamp": [
+          "oklch(0.15 0.01 155)",
+          "oklch(0.26 0.01 155)",
+          "oklch(0.37 0.01 155)",
+          "oklch(0.48 0.01 155)",
+          "oklch(0.6 0.01 155)",
+          "oklch(0.72 0.01 155)",
+          "oklch(0.84 0.01 155)",
+          "oklch(0.95 0.01 155)"
+        ]
+      },
+      "spring-teal": {
+        "role": "secondary",
+        "displayName": "Spring Teal",
+        "canonical": "oklch(0.72 0.14 180)",
+        "tonalRamp": [
+          "oklch(0.15 0.14 180)",
+          "oklch(0.26 0.14 180)",
+          "oklch(0.37 0.14 180)",
+          "oklch(0.48 0.14 180)",
+          "oklch(0.6 0.14 180)",
+          "oklch(0.72 0.14 180)",
+          "oklch(0.84 0.14 180)",
+          "oklch(0.95 0.14 180)"
+        ]
+      },
+      "home-hairline": {
+        "role": "neutral",
+        "displayName": "Leaf Hairline",
+        "canonical": "oklch(0.85 0.15 145 / 14%)",
+        "tonalRamp": [
+          "oklch(0.15 0.15 145)",
+          "oklch(0.26 0.15 145)",
+          "oklch(0.37 0.15 145)",
+          "oklch(0.48 0.15 145)",
+          "oklch(0.6 0.15 145)",
+          "oklch(0.72 0.15 145)",
+          "oklch(0.84 0.15 145)",
+          "oklch(0.95 0.15 145)"
+        ]
+      },
+      "learning-ground": {
+        "role": "neutral",
+        "displayName": "Warm Charcoal",
+        "canonical": "oklch(0.175 0.006 75)",
+        "tonalRamp": [
+          "oklch(0.15 0.006 75)",
+          "oklch(0.26 0.006 75)",
+          "oklch(0.37 0.006 75)",
+          "oklch(0.48 0.006 75)",
+          "oklch(0.6 0.006 75)",
+          "oklch(0.72 0.006 75)",
+          "oklch(0.84 0.006 75)",
+          "oklch(0.95 0.006 75)"
+        ]
+      },
+      "learning-surface": {
+        "role": "neutral",
+        "displayName": "Charcoal Surface",
+        "canonical": "oklch(0.215 0.007 75)",
+        "tonalRamp": [
+          "oklch(0.15 0.007 75)",
+          "oklch(0.26 0.007 75)",
+          "oklch(0.37 0.007 75)",
+          "oklch(0.48 0.007 75)",
+          "oklch(0.6 0.007 75)",
+          "oklch(0.72 0.007 75)",
+          "oklch(0.84 0.007 75)",
+          "oklch(0.95 0.007 75)"
+        ]
+      },
+      "learning-surface-raised": {
+        "role": "neutral",
+        "displayName": "Raised Charcoal",
+        "canonical": "oklch(0.26 0.008 75)",
+        "tonalRamp": [
+          "oklch(0.15 0.008 75)",
+          "oklch(0.26 0.008 75)",
+          "oklch(0.37 0.008 75)",
+          "oklch(0.48 0.008 75)",
+          "oklch(0.6 0.008 75)",
+          "oklch(0.72 0.008 75)",
+          "oklch(0.84 0.008 75)",
+          "oklch(0.95 0.008 75)"
+        ]
+      },
+      "learning-ink": {
+        "role": "neutral",
+        "displayName": "Ivory",
+        "canonical": "oklch(0.93 0.014 85)",
+        "tonalRamp": [
+          "oklch(0.15 0.014 85)",
+          "oklch(0.26 0.014 85)",
+          "oklch(0.37 0.014 85)",
+          "oklch(0.48 0.014 85)",
+          "oklch(0.6 0.014 85)",
+          "oklch(0.72 0.014 85)",
+          "oklch(0.84 0.014 85)",
+          "oklch(0.95 0.014 85)"
+        ]
+      },
+      "learning-ink-muted": {
+        "role": "neutral",
+        "displayName": "Warm Grey",
+        "canonical": "oklch(0.74 0.016 80)",
+        "tonalRamp": [
+          "oklch(0.15 0.016 80)",
+          "oklch(0.26 0.016 80)",
+          "oklch(0.37 0.016 80)",
+          "oklch(0.48 0.016 80)",
+          "oklch(0.6 0.016 80)",
+          "oklch(0.72 0.016 80)",
+          "oklch(0.84 0.016 80)",
+          "oklch(0.95 0.016 80)"
+        ]
+      },
+      "sage": {
+        "role": "primary",
+        "displayName": "Sage",
+        "canonical": "oklch(0.8 0.085 150)",
+        "tonalRamp": [
+          "oklch(0.15 0.085 150)",
+          "oklch(0.26 0.085 150)",
+          "oklch(0.37 0.085 150)",
+          "oklch(0.48 0.085 150)",
+          "oklch(0.6 0.085 150)",
+          "oklch(0.72 0.085 150)",
+          "oklch(0.84 0.085 150)",
+          "oklch(0.95 0.085 150)"
+        ]
+      },
+      "sage-ink": {
+        "role": "neutral",
+        "displayName": "Sage Ink",
+        "canonical": "oklch(0.2 0.02 150)",
+        "tonalRamp": [
+          "oklch(0.15 0.02 150)",
+          "oklch(0.26 0.02 150)",
+          "oklch(0.37 0.02 150)",
+          "oklch(0.48 0.02 150)",
+          "oklch(0.6 0.02 150)",
+          "oklch(0.72 0.02 150)",
+          "oklch(0.84 0.02 150)",
+          "oklch(0.95 0.02 150)"
+        ]
+      },
+      "amber-in-progress": {
+        "role": "secondary",
+        "displayName": "Amber In Progress",
+        "canonical": "oklch(0.82 0.09 78)",
+        "tonalRamp": [
+          "oklch(0.15 0.09 78)",
+          "oklch(0.26 0.09 78)",
+          "oklch(0.37 0.09 78)",
+          "oklch(0.48 0.09 78)",
+          "oklch(0.6 0.09 78)",
+          "oklch(0.72 0.09 78)",
+          "oklch(0.84 0.09 78)",
+          "oklch(0.95 0.09 78)"
+        ]
+      },
+      "clay-core": {
+        "role": "tertiary",
+        "displayName": "Clay",
+        "canonical": "oklch(0.72 0.1 25)",
+        "tonalRamp": [
+          "oklch(0.15 0.1 25)",
+          "oklch(0.26 0.1 25)",
+          "oklch(0.37 0.1 25)",
+          "oklch(0.48 0.1 25)",
+          "oklch(0.6 0.1 25)",
+          "oklch(0.72 0.1 25)",
+          "oklch(0.84 0.1 25)",
+          "oklch(0.95 0.1 25)"
+        ]
+      },
+      "learning-hairline": {
+        "role": "neutral",
+        "displayName": "Ivory Hairline",
+        "canonical": "oklch(0.93 0.02 85 / 10%)",
+        "tonalRamp": [
+          "oklch(0.15 0.02 85)",
+          "oklch(0.26 0.02 85)",
+          "oklch(0.37 0.02 85)",
+          "oklch(0.48 0.02 85)",
+          "oklch(0.6 0.02 85)",
+          "oklch(0.72 0.02 85)",
+          "oklch(0.84 0.02 85)",
+          "oklch(0.95 0.02 85)"
+        ]
+      },
+      "code-ground": {
+        "role": "neutral",
+        "displayName": "Code Ground",
+        "canonical": "oklch(0.148 0.006 70)",
+        "tonalRamp": [
+          "oklch(0.15 0.006 70)",
+          "oklch(0.26 0.006 70)",
+          "oklch(0.37 0.006 70)",
+          "oklch(0.48 0.006 70)",
+          "oklch(0.6 0.006 70)",
+          "oklch(0.72 0.006 70)",
+          "oklch(0.84 0.006 70)",
+          "oklch(0.95 0.006 70)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "home-display": {
+        "displayName": "Home Display",
+        "purpose": "The portfolio hero name only."
+      },
+      "home-headline": {
+        "displayName": "Home Headline",
+        "purpose": "Portfolio section titles; h1-h4 default outside /learning."
+      },
+      "home-body": {
+        "displayName": "Home Body",
+        "purpose": "Portfolio paragraphs, mostly muted."
+      },
+      "home-label": {
+        "displayName": "Home Label",
+        "purpose": "Uppercase mono dates and period metadata on portfolio panels."
+      },
+      "learning-display": {
+        "displayName": "Study Display",
+        "purpose": "Page titles in /learning."
+      },
+      "learning-title": {
+        "displayName": "Study Title",
+        "purpose": "Track names on the path; note subheads."
+      },
+      "learning-reading": {
+        "displayName": "Study Reading",
+        "purpose": "Note bodies, 68ch measure, old-style numerals."
+      },
+      "learning-interface": {
+        "displayName": "Study Interface",
+        "purpose": "Header, breadcrumbs, intros, tables, callout titles."
+      },
+      "learning-meta": {
+        "displayName": "Study Meta",
+        "purpose": "Counts, progress labels, priority pills, captions; tabular numerals."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Code blocks and inline code only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "elevated",
+        "value": "0 24px 70px -30px oklch(0 0 0 / 80%)",
+        "purpose": "Glass panels on the portfolio."
+      },
+      {
+        "name": "nav-pill",
+        "value": "inset 0 1px 0 rgb(255 255 255 / 7%), 0 10px 30px -14px color-mix(in oklab, var(--primary) 55%, transparent), 0 2px 10px -6px rgb(0 0 0 / 60%)",
+        "purpose": "Desktop portfolio nav only."
+      },
+      {
+        "name": "code-block",
+        "value": "inset 0 0 0 1px var(--border), 0 12px 30px -18px oklch(0 0 0 / 60%)",
+        "purpose": "Shiki code blocks in /learning."
+      },
+      {
+        "name": "node-halo",
+        "value": "0 0 0 1px var(--border), 0 0 0 6px var(--background)",
+        "purpose": "Learning path nodes; the inner ring turns sage at 55% once started."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Shared entrance and fill curve: reveals (800ms), menu rows (260ms), path rail (700ms), link sweep, callout chevron."
+      },
+      {
+        "name": "ease-nav-slide",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Portfolio nav active pill, 500ms."
+      },
+      {
+        "name": "study-hover",
+        "value": "180ms-200ms ease-out",
+        "purpose": "Every /learning hover fill, colour change and arrow nudge."
+      },
+      {
+        "name": "ambient-drift",
+        "value": "26s ease-in-out infinite alternate",
+        "purpose": "Portfolio background glow only; stopped under reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Home Primary Button",
+      "kind": "button",
+      "refersTo": "home-button-primary",
+      "description": "Spring Leaf pill for the portfolio's main call to action.",
+      "html": "<button class=\"ds-home-btn\">View projects</button>",
+      "css": ".ds-home-btn{background:oklch(0.76 0.19 143);color:oklch(0.08 0.01 155);border:none;border-radius:999px;padding:12px 24px;font:500 0.875rem 'DM Sans',sans-serif;cursor:pointer;transition:transform 200ms}.ds-home-btn:hover{transform:scale(1.05)}.ds-home-btn:focus-visible{outline:none;box-shadow:0 0 0 2px oklch(0.76 0.19 143 / 60%)}"
+    },
+    {
+      "name": "Home Ghost Button",
+      "kind": "button",
+      "refersTo": "home-button-ghost",
+      "description": "Hairline pill for secondary portfolio actions.",
+      "html": "<button class=\"ds-home-ghost\">Get in touch</button>",
+      "css": ".ds-home-ghost{background:transparent;color:oklch(0.97 0.008 150);border:1px solid oklch(0.85 0.15 145 / 14%);border-radius:999px;padding:12px 24px;font:500 0.875rem 'DM Sans',sans-serif;cursor:pointer;transition:background-color 150ms}.ds-home-ghost:hover{background:oklch(0.16 0.01 155)}.ds-home-ghost:focus-visible{outline:none;box-shadow:0 0 0 2px oklch(0.76 0.19 143 / 60%)}"
+    },
+    {
+      "name": "Study Header",
+      "kind": "nav",
+      "refersTo": "learning-header",
+      "description": "Plain 56px sticky bar for /learning.",
+      "html": "<header class=\"ds-lh\"><a href=\"#\" class=\"ds-lh-back\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m12 19-7-7 7-7\"/><path d=\"M19 12H5\"/></svg>Amirali Abbasi</a><a href=\"#\" class=\"ds-lh-here\">Learning</a></header>",
+      "css": ".ds-lh{display:flex;justify-content:space-between;align-items:center;height:56px;padding:0 20px;background:oklch(0.175 0.006 75);border-bottom:1px solid oklch(0.93 0.02 85 / 10%);font-family:Figtree,sans-serif;font-size:0.875rem}.ds-lh a{text-decoration:none;border-radius:6px;transition:color 200ms}.ds-lh-back{display:inline-flex;gap:8px;align-items:center;color:oklch(0.74 0.016 80)}.ds-lh-back:hover{color:oklch(0.93 0.014 85)}.ds-lh-back svg{transition:transform 200ms ease-out}.ds-lh-back:hover svg{transform:translateX(-2px)}.ds-lh-here{color:oklch(0.93 0.014 85);font-weight:500}.ds-lh-here:hover{color:oklch(0.8 0.085 150)}.ds-lh a:focus-visible{outline:2px solid oklch(0.8 0.085 150 / 55%);outline-offset:3px}"
+    },
+    {
+      "name": "Learning Path Step",
+      "kind": "custom",
+      "refersTo": "learning-path-node",
+      "description": "One track on the ordered path: node with brand mark, Literata title, intro, the reader's own progress.",
+      "html": "<div class=\"ds-step\"><span class=\"ds-node\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 7v14\"/><path d=\"M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z\"/></svg></span><a href=\"#\" class=\"ds-row\"><h2>Spring Boot</h2><p>Auto-configuration, starters and the production features around them.</p><div class=\"ds-meta\"><div class=\"ds-bar\"><i style=\"width:18%\"></i></div><span>12 of 64 done · 5 sections</span></div></a></div>",
+      "css": ".ds-step{position:relative;padding-left:60px;font-family:Figtree,sans-serif;background:oklch(0.175 0.006 75)}.ds-node{position:absolute;left:0;top:18px;display:grid;place-items:center;width:36px;height:36px;border-radius:999px;background:oklch(0.215 0.007 75);color:oklch(0.8 0.085 150);box-shadow:0 0 0 1px oklch(0.8 0.085 150 / 55%),0 0 0 6px oklch(0.175 0.006 75)}.ds-row{display:block;margin:0 -16px;padding:16px;border-radius:22px;text-decoration:none;transition:background-color 200ms}.ds-row:hover,.ds-row:focus-visible{background:oklch(0.215 0.007 75)}.ds-row:focus-visible{outline:2px solid oklch(0.8 0.085 150 / 55%);outline-offset:3px}.ds-row h2{margin:0;font:600 1.25rem Literata,Georgia,serif;letter-spacing:-0.012em;color:oklch(0.93 0.014 85)}.ds-row p{margin:6px 0 0;font-size:0.9375rem;line-height:1.625;color:oklch(0.74 0.016 80)}.ds-meta{margin-top:16px;display:flex;gap:16px;align-items:center;font-size:0.75rem;color:oklch(0.74 0.016 80);font-variant-numeric:tabular-nums}.ds-bar{flex:1;max-width:14rem;height:4px;border-radius:999px;background:oklch(0.26 0.008 75);overflow:hidden}.ds-bar i{display:block;height:100%;border-radius:999px;background:oklch(0.8 0.085 150)}"
+    },
+    {
+      "name": "Continue Row",
+      "kind": "card",
+      "refersTo": "learning-continue-row",
+      "description": "Resume link, shown only when the reader has history.",
+      "html": "<a href=\"#\" class=\"ds-cont\"><span><small>Continue where you left off</small><b>Bean scopes and lifecycle</b></span><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></a>",
+      "css": ".ds-cont{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 16px;border:1px solid oklch(0.93 0.02 85 / 10%);border-radius:18px;background:oklch(0.175 0.006 75);text-decoration:none;font-family:Figtree,sans-serif;transition:background-color 200ms,border-color 200ms}.ds-cont:hover{background:oklch(0.215 0.007 75);border-color:oklch(0.8 0.085 150 / 40%)}.ds-cont:focus-visible{outline:2px solid oklch(0.8 0.085 150 / 55%);outline-offset:3px}.ds-cont small{display:block;font-size:0.75rem;color:oklch(0.74 0.016 80)}.ds-cont b{display:block;margin-top:2px;font-weight:400;font-size:0.9375rem;color:oklch(0.93 0.014 85)}.ds-cont svg{flex:none;color:oklch(0.8 0.085 150);transition:transform 200ms ease-out}.ds-cont:hover svg{transform:translateX(2px)}"
+    },
+    {
+      "name": "Checklist Item",
+      "kind": "input",
+      "refersTo": "learning-checkbox",
+      "description": "Reader-tickable checklist row in note prose; ticks persist per browser.",
+      "html": "<label class=\"ds-check\"><input type=\"checkbox\"> Understand the proxy behind @Transactional</label>",
+      "css": ".ds-check{display:flex;gap:10px;align-items:baseline;font:400 1.0625rem/1.8 Literata,Georgia,serif;color:oklch(0.93 0.014 85)}.ds-check input{appearance:none;flex:none;width:1.1em;height:1.1em;margin:0;transform:translateY(0.15em);border:1.5px solid oklch(0.93 0.014 85 / 30%);border-radius:0.35em;cursor:pointer;transition:background-color 180ms ease-out,border-color 180ms ease-out}.ds-check input:hover{border-color:oklch(0.8 0.085 150)}.ds-check input:focus-visible{outline:2px solid oklch(0.8 0.085 150 / 55%);outline-offset:3px}.ds-check input:checked{border-color:oklch(0.8 0.085 150);background:oklch(0.8 0.085 150) url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231f2a22' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E\") center/72% no-repeat}.ds-check:has(input:checked){color:oklch(0.74 0.016 80)}"
+    },
+    {
+      "name": "Priority Pills",
+      "kind": "chip",
+      "refersTo": "learning-priority-core",
+      "description": "Core / Important / Optional priority tags; the key is labelled \"Priority\".",
+      "html": "<span class=\"ds-pri ds-core\">Core</span> <span class=\"ds-pri ds-imp\">Important</span> <span class=\"ds-pri ds-opt\">Optional</span>",
+      "css": ".ds-pri{padding:0.05em 0.5em;border-radius:999px;font:400 0.72rem Figtree,sans-serif;white-space:nowrap}.ds-core{background:color-mix(in oklab,oklch(0.72 0.1 25) 16%,transparent);color:oklch(0.8 0.08 25)}.ds-imp{background:oklch(0.26 0.008 75);color:oklch(0.93 0.014 85)}.ds-opt{background:color-mix(in oklab,oklch(0.8 0.085 150) 14%,transparent);color:oklch(0.8 0.085 150)}"
+    },
+    {
+      "name": "Callout",
+      "kind": "card",
+      "refersTo": "learning-callout",
+      "description": "Soft tinted note panel; tone by kind, no side stripe.",
+      "html": "<div class=\"ds-callout\"><div class=\"ds-ct\">Tip</div><p>Prefer constructor injection; it keeps dependencies explicit.</p></div>",
+      "css": ".ds-callout{--tone:oklch(0.8 0.085 150);padding:1rem 1.15rem;border-radius:0.9rem;background:color-mix(in oklab,var(--tone) 8%,oklch(0.215 0.007 75));box-shadow:inset 0 0 0 1px color-mix(in oklab,var(--tone) 18%,transparent);font:400 0.98rem/1.8 Literata,Georgia,serif;color:oklch(0.93 0.014 85)}.ds-ct{font:600 0.98rem Figtree,sans-serif}.ds-callout p{margin:0.45em 0 0}"
+    },
+    {
+      "name": "Code Block",
+      "kind": "custom",
+      "refersTo": "learning-code-block",
+      "description": "Shiki css-variables block in the warm palette, language caption top right.",
+      "html": "<figure class=\"ds-code\"><figcaption>java</figcaption><pre><code><span class=\"k\">public record</span> <span class=\"f\">Note</span>(<span class=\"k\">String</span> title) {} <span class=\"c\">// immutable</span></code></pre></figure>",
+      "css": ".ds-code{position:relative;margin:0}.ds-code figcaption{position:absolute;top:0.55rem;right:0.9rem;font:0.72rem Figtree,sans-serif;color:oklch(0.63 0.022 75)}.ds-code pre{margin:0;padding:1.15rem 1.3rem;border-radius:0.9rem;background:oklch(0.148 0.006 70);color:oklch(0.88 0.016 85);box-shadow:inset 0 0 0 1px oklch(0.93 0.02 85 / 10%),0 12px 30px -18px oklch(0 0 0 / 60%);font:0.86rem/1.7 'JetBrains Mono',monospace;overflow-x:auto}.ds-code .k{color:oklch(0.79 0.08 150)}.ds-code .f{color:oklch(0.82 0.05 165)}.ds-code .c{color:oklch(0.63 0.022 75)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The House and the Study",
+    "overview": "One house, two rooms. The front room (`/`) is the portfolio: a black ground, a single Spring-leaf green, large Space Grotesk headlines, glass panels and slow ambient motion. It is built to be judged quickly by recruiters and engineers. The study (`/learning`) is the same house after dark: warm charcoal instead of black, ivory instead of white, the green softened to sage, and a bookish Literata for reading. It is built to be sat in.\n\nThe study is scoped entirely by the `.learning` class, which re-declares the same semantic tokens (`--background`, `--primary`, `--border`, ...) with warmer values. Every Tailwind utility (`bg-card`, `text-primary`) therefore works in both rooms and lands on the right palette without new class names. The family resemblance is structural: same token names, same green hue family (143 to 150), same dark ground, same easing curve.\n\nDensity differs by room. The portfolio is wide (64rem column) and theatrical; the study is a single narrow column (48rem, prose at 68ch) with one idea per region, no cards, no grids, and no badge noise.",
+    "keyCharacteristics": [
+      "Dark-only, both rooms; `color-scheme: dark` in the study.",
+      "One accent per room: Spring-leaf on `/`, sage in `/learning`. Amber appears only for \"in progress\".",
+      "Room identity lives in the `.learning` token override, not in parallel class names.",
+      "Study content is prerendered HTML styled by element (`.note-prose`), so the reading styles are the system.",
+      "Real icons only: simple-icons brand marks for tracks, Lucide line icons for topics and meaningful symbols; emoji never render.",
+      "Shared motion curve `cubic-bezier(0.16, 1, 0.3, 1)`, and every animation has a reduced-motion fallback."
+    ],
+    "rules": [
+      {
+        "name": "The One Accent Per Room Rule",
+        "body": "Each room spends colour on one hue: Spring Leaf on `/`, sage in `/learning`. Other hues exist only to carry meaning (amber = started, clay = core / no / danger).",
+        "section": "colors"
+      },
+      {
+        "name": "The Amber Means Started Rule",
+        "body": "Amber marks the reader's in-progress state and warning callouts. It never decorates, never highlights, never marks the owner.",
+        "section": "colors"
+      },
+      {
+        "name": "The Scope, Don't Fork Rule",
+        "body": "A new study surface re-uses `bg-background`, `text-primary`, `border-border` inside `.learning`; it does not introduce study-specific colour classes. New room palettes are token overrides on a scoping class.",
+        "section": "colors"
+      },
+      {
+        "name": "The Code In The Palette Rule",
+        "body": "Syntax colours are the Shiki `css-variables` theme mapped to warm tokens: keywords and links sage, strings a soft straw, constants a burnt orange, functions a grey-green, comments warm grey. No off-palette editor theme.",
+        "section": "colors"
+      },
+      {
+        "name": "The Book And The Frame Rule",
+        "body": "In the study, anything read is Literata; anything operated is Figtree. Tables and callout titles count as interface.",
+        "section": "typography"
+      },
+      {
+        "name": "The Mono Is For Code Rule",
+        "body": "In the study, JetBrains Mono appears only in code. It is not a label or metadata face there.",
+        "section": "typography"
+      },
+      {
+        "name": "The Honest Numbers Rule",
+        "body": "Numbers in running text use old-style figures; counts, tables and code use lining tabular figures. Numbering is plain 1, 2, 3, never zero-padded. Progress reads as \"3 of 612 done\" or \"612 items\", never a rounded 0%.",
+        "section": "typography"
+      },
+      {
+        "name": "The Single Column Rule",
+        "body": "The study never lays content in card grids or multi-column dashboards. One column, one reading order.",
+        "section": "layout"
+      },
+      {
+        "name": "The Quiet Room Rule",
+        "body": "The study adds no glows, no blur, no ambient motion. If a study element needs to stand out, it gets a tonal step or a sage hairline, not a shadow.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do build any new study surface inside `.learning` and use the semantic utilities (`bg-card`, `text-primary`, `border-border`); the room's palette arrives through the token override.",
+      "Do set reading in Literata at 1.0625rem / 1.8 with a 68ch measure, and interface in Figtree.",
+      "Do keep hover feedback in the study to a surface fill, a sage hairline, or a 2px arrow nudge, on 180ms to 200ms ease-out.",
+      "Do show progress as the visitor's own counts (\"3 of 612 done\"), in tabular figures.",
+      "Do use `cubic-bezier(0.16, 1, 0.3, 1)` for entrances and fills, and give every animation a reduced-motion fallback.",
+      "Do mark tracks with brand logos and topics with Lucide line icons."
+    ],
+    "donts": [
+      "Don't render emoji anywhere on the site; map meaningful ones to drawn icons and drop the rest.",
+      "Don't use card grids, neon glows, blur, or badge clusters in `/learning`.",
+      "Don't use amber for anything but \"in progress\" and warning callouts.",
+      "Don't publish or display the owner's own ticks or vault status; only the visitor's per-browser progress appears.",
+      "Don't zero-pad numbers (1, 2, 3, not 01, 02, 03).",
+      "Don't use JetBrains Mono for labels inside `/learning`; it is for code.",
+      "Don't add a coloured side stripe to callouts; tone is carried by the tinted fill and hairline."
+    ]
+  }
+}

@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
-import { getLearningIndex } from "@/lib/learning";
 
 const BASE_URL = "https://amiraliabbasi.ir";
 
@@ -15,18 +14,7 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
-        const { slugs, builtAt } = await getLearningIndex();
-        const lastmod = builtAt.slice(0, 10);
-        const entries: SitemapEntry[] = [
-          { path: "/", changefreq: "monthly", priority: "1.0" },
-          { path: "/learning", lastmod, changefreq: "weekly", priority: "0.8" },
-          ...slugs.map((s) => ({
-            path: `/learning/${s}`,
-            lastmod,
-            changefreq: "weekly" as const,
-            priority: "0.5",
-          })),
-        ];
+        const entries: SitemapEntry[] = [{ path: "/", changefreq: "monthly", priority: "1.0" }];
 
         const urls = entries.map((e) =>
           [
