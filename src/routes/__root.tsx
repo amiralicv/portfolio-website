@@ -83,19 +83,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Amirali Abbasi — Software Engineer" },
       {
         property: "og:description",
-        content: "Java backend engineer in Tehran building APIs and services with Java, Spring Boot, PostgreSQL and clean architecture. Experience with KYC, payments and SMS notification systems.",
+        content:
+          "Java backend engineer in Tehran building APIs and services with Java, Spring Boot, PostgreSQL and clean architecture. Experience with KYC, payments and SMS notification systems.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Amirali Abbasi — Software Engineer" },
-      { name: "twitter:description", content: "Java backend engineer in Tehran building APIs and services with Java, Spring Boot, PostgreSQL and clean architecture. Experience with KYC, payments and SMS notification systems." },
+      {
+        name: "twitter:description",
+        content:
+          "Java backend engineer in Tehran building APIs and services with Java, Spring Boot, PostgreSQL and clean architecture. Experience with KYC, payments and SMS notification systems.",
+      },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Sans:wght@400;500&family=JetBrains+Mono:wght@400&display=swap",
       },
       {
         rel: "stylesheet",
@@ -111,8 +116,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    // The theme class is set by the inline script before React hydrates, so it differs from the server HTML.
+    <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Runs before first paint: saved choice, else the OS setting. Avoids a light flash in dark mode. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem("theme");if(t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark")}catch(e){}`,
+          }}
+        />
         <HeadContent />
       </head>
       <body>

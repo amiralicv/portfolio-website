@@ -1,8 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, FileDown } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-import LetterGlitch from "@/components/LetterGlitch";
+import { ArrowUpRight, Check, Copy } from "lucide-react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import {
+  siApachemaven,
+  siDocker,
+  siGit,
+  siHibernate,
+  siIntellijidea,
+  siOpenjdk,
+  siPostgresql,
+  siPostman,
+  siSpring,
+  siSpringboot,
+} from "simple-icons";
 import { Reveal } from "@/components/Reveal";
+import ThemeToggle from "@/components/ThemeToggle";
 import ContactLinks from "@/components/ContactLinks";
 
 export const Route = createFileRoute("/")({
@@ -12,13 +24,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Java backend engineer in Tehran building APIs and services with Java, Spring Boot, PostgreSQL and clean architecture. Experience with KYC, payments and SMS notification systems.",
+          "Java backend developer building reliable server-side systems with Spring Boot, with a growing focus on databases and data pipelines.",
       },
-      { property: "og:title", content: "Amirali Abbasi — Software Engineer" },
+      { property: "og:title", content: "Amirali Abbasi — Java Backend Developer" },
       {
         property: "og:description",
         content:
-          "Java backend engineer in Tehran building APIs and services with Java, Spring Boot, PostgreSQL and clean architecture. Experience with KYC, payments and SMS notification systems.",
+          "Java backend developer building reliable server-side systems with Spring Boot, with a growing focus on databases and data pipelines.",
       },
       { property: "og:type", content: "profile" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -27,285 +39,229 @@ export const Route = createFileRoute("/")({
   component: Portfolio,
 });
 
-const SLIDES = ["Intro", "Contact"];
+const RESUME_URL = "https://flowcv.com/resume/vcb1fuhh1roi";
+const EMAIL = "abbasigudarzi@gmail.com";
 
-// Repeats weight the pick: 1 bright letter in 8, the rest deep green.
-const GLITCH_COLORS = [
-  "#0f1f17",
-  "#14291e",
-  "#1b3528",
-  "#0f1f17",
-  "#14291e",
-  "#24473a",
-  "#1b3528",
-  "#61dca3",
+// Read like the key–value block at the top of a CV.
+const FACTS = [
+  ["Focus", "Backend & Data Systems"],
+  ["Degree", "B.Eng, Computer Engineering"],
+  ["Studying", "M.Sc, Software Engineering"],
+  ["Based in", "Tehran, Iran"],
 ];
 
-// Surface one or two at a time in the background, glowing.
-const DATA_WORDS = [
-  "SQL",
-  "ETL",
-  "ELT",
-  "PYTHON",
-  "OLAP",
-  "SPARK",
-  "KAFKA",
-  "AIRFLOW",
-  "DBT",
-  "PARQUET",
-  "DATA LAKE",
-  "STAR SCHEMA",
-  "POSTGRESQL",
-  "CDC",
+// simple-icons has no "Java" mark (Oracle asked for its removal); OpenJDK stands in.
+const TOOLKIT = [
+  { ...siOpenjdk, title: "Java" },
+  siSpringboot,
+  siSpring,
+  { ...siHibernate, title: "Hibernate / JPA" },
+  siPostgresql,
+  siDocker,
+  siGit,
+  siApachemaven,
+  siIntellijidea,
+  siPostman,
 ];
 
-/** Wheel/swipe input inside this window after a slide change is ignored, so one gesture moves one slide. */
-const LOCK_MS = 900;
+// Near-black brand colours (OpenJDK, IntelliJ) would vanish in dark mode; they hover to the ink colour instead.
+function brandColor(hex: string) {
+  const n = parseInt(hex, 16);
+  const luma = 0.299 * (n >> 16) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255);
+  return luma < 60 ? "var(--foreground)" : `#${hex}`;
+}
 
-/** Frosted glass: the letter field shows through, blurred, behind a faint white sheen. */
-const GLASS =
-  "inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] font-medium text-foreground shadow-[inset_0_1px_0_rgb(255_255_255/0.12),0_8px_24px_-12px_rgb(0_0_0/0.6)] backdrop-blur-xl backdrop-saturate-150 transition-colors hover:border-white/25 hover:bg-white/[0.1] focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:outline-none";
-
-function ResumeButton({ className = "" }: { className?: string }) {
+function ToolIcons({ hidden = false }: { hidden?: boolean }) {
   return (
-    <a
-      href="/resume.pdf"
-      download="Amirali-Abbasi-Resume.pdf"
-      className={`${GLASS} px-6 py-3 text-sm ${className}`}
+    <ul className="flex shrink-0" aria-hidden={hidden || undefined}>
+      {TOOLKIT.map((icon) => (
+        <li key={icon.title} className="pr-10 sm:pr-14">
+          <svg
+            viewBox="0 0 24 24"
+            role={hidden ? undefined : "img"}
+            aria-label={hidden ? undefined : icon.title}
+            className="size-8 fill-muted-foreground/70 transition-colors duration-300 hover:fill-[var(--brand)] sm:size-9"
+            style={{ "--brand": brandColor(icon.hex) } as CSSProperties}
+          >
+            <title>{icon.title}</title>
+            <path d={icon.path} />
+          </svg>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+const BUTTON =
+  "inline-flex h-11 items-center gap-2 rounded-md px-5 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none";
+
+function Section({ id, label, children }: { id: string; label: string; children: ReactNode }) {
+  return (
+    <section id={id} className="scroll-mt-6 py-6 sm:py-8">
+      <Reveal>
+        <div className="flex items-center gap-4">
+          <h2 className="font-mono text-[11px] font-normal tracking-[0.2em] text-muted-foreground uppercase">
+            {label}
+          </h2>
+          <span className="h-px flex-1 bg-border" />
+        </div>
+      </Reveal>
+      {children}
+    </section>
+  );
+}
+
+function CopyEmail() {
+  const [copied, setCopied] = useState(false);
+  const timer = useRef(0);
+  useEffect(() => () => clearTimeout(timer.current), []);
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+      clearTimeout(timer.current);
+      timer.current = window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      // Clipboard blocked (insecure context, permissions): the mailto link still works.
+    }
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={copy}
+      aria-label={copied ? "Email copied" : "Copy email"}
+      className="inline-flex size-11 shrink-0 items-center justify-center rounded-md border border-border text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
     >
-      <FileDown className="size-4" aria-hidden />
-      Resume
-    </a>
+      {copied ? <Check className="size-4 text-primary" /> : <Copy className="size-4" />}
+      <span aria-live="polite" className="sr-only">
+        {copied ? "Copied" : ""}
+      </span>
+    </button>
   );
 }
 
 function Portfolio() {
-  const [slide, setSlide] = useState(0);
-  const lockedUntil = useRef(0);
-
-  const go = (next: number) => {
-    const clamped = Math.max(0, Math.min(SLIDES.length - 1, next));
-    lockedUntil.current = Date.now() + LOCK_MS;
-    setSlide(clamped);
-  };
-
-  // Keyboard, wheel and swipe all step one slide at a time.
-  useEffect(() => {
-    const step = (dir: number) => {
-      if (Date.now() < lockedUntil.current) return;
-      lockedUntil.current = Date.now() + LOCK_MS;
-      setSlide((s) => Math.max(0, Math.min(SLIDES.length - 1, s + dir)));
-    };
-
-    const onKey = (e: KeyboardEvent) => {
-      if (["ArrowRight", "ArrowDown", "PageDown"].includes(e.key)) step(1);
-      else if (["ArrowLeft", "ArrowUp", "PageUp"].includes(e.key)) step(-1);
-      else return;
-      e.preventDefault();
-    };
-    const onWheel = (e: WheelEvent) => {
-      const d = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
-      if (Math.abs(d) > 20) step(Math.sign(d));
-    };
-    let startX = 0;
-    let startY = 0;
-    const onTouchStart = (e: TouchEvent) => {
-      startX = e.touches[0].clientX;
-      startY = e.touches[0].clientY;
-    };
-    const onTouchEnd = (e: TouchEvent) => {
-      const dx = startX - e.changedTouches[0].clientX;
-      const dy = startY - e.changedTouches[0].clientY;
-      const d = Math.abs(dx) > Math.abs(dy) ? dx : dy;
-      if (Math.abs(d) > 50) step(Math.sign(d));
-    };
-
-    window.addEventListener("keydown", onKey);
-    window.addEventListener("wheel", onWheel, { passive: true });
-    window.addEventListener("touchstart", onTouchStart, { passive: true });
-    window.addEventListener("touchend", onTouchEnd, { passive: true });
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      window.removeEventListener("wheel", onWheel);
-      window.removeEventListener("touchstart", onTouchStart);
-      window.removeEventListener("touchend", onTouchEnd);
-    };
-  }, []);
-
   return (
-    <main className="fixed inset-0 overflow-hidden bg-background text-foreground">
-      <div className="pointer-events-none absolute inset-0 z-0">
-        {/* Mostly deep greens with a rare bright spark, so the field reads as texture behind the type. */}
-        <div className="absolute inset-0 opacity-80">
-          <LetterGlitch
-            glitchColors={GLITCH_COLORS}
-            glitchSpeed={60}
-            words={DATA_WORDS}
-            smooth
-            outerVignette
-            centerVignette={false}
-          />
+    <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
+      <main id="top" className="mx-auto max-w-3xl px-5 pb-12 sm:px-8">
+        {/* Intro */}
+        <div className="pt-8 pb-4 sm:pt-20">
+          <Reveal className="flex items-center justify-between gap-4">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
+              <span className="relative flex size-1.5">
+                <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-50 motion-reduce:animate-none" />
+                <span className="relative inline-flex size-1.5 rounded-full bg-primary" />
+              </span>
+              Open to remote &amp; on-site
+            </span>
+            <ThemeToggle />
+          </Reveal>
+          <Reveal delay={80}>
+            <h1 className="mt-6 text-5xl leading-none sm:text-7xl">Amirali Abbasi</h1>
+          </Reveal>
+          <Reveal delay={140}>
+            <p className="mt-4 font-mono text-xs tracking-[0.2em] text-primary uppercase">
+              Java Backend Developer
+            </p>
+          </Reveal>
+          <Reveal delay={200}>
+            <p className="mt-8 max-w-xl text-lg leading-relaxed text-foreground/80">
+              Java backend developer building reliable server-side systems with Spring Boot, with a
+              growing focus on databases and data pipelines.
+            </p>
+          </Reveal>
+          <Reveal delay={260}>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href="#contact"
+                className={`${BUTTON} bg-foreground text-background hover:bg-foreground/85`}
+              >
+                Get in touch
+              </a>
+              <a
+                href={RESUME_URL}
+                target="_blank"
+                rel="noreferrer noopener"
+                className={`${BUTTON} border border-border hover:bg-secondary`}
+              >
+                Resume
+                <ArrowUpRight className="size-4" aria-hidden />
+              </a>
+            </div>
+          </Reveal>
         </div>
-        {/* Scrim behind the hero copy: solid under the text on the left, open on the right so the glitch still shows. */}
-        <div className="absolute inset-0 bg-background/75 sm:bg-transparent sm:bg-[linear-gradient(90deg,var(--background)_0%,color-mix(in_oklab,var(--background)_88%,transparent)_40%,transparent_85%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,transparent_20%,color-mix(in_oklab,var(--background)_88%,transparent)_95%)]" />
-        {/* Contact backdrop: fades over the field instead of sliding in with a hard edge. */}
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_60%,color-mix(in_oklab,var(--primary)_12%,var(--background))_0%,var(--background)_70%)] transition-opacity duration-1000 ease-in-out motion-reduce:transition-none"
-          style={{ opacity: slide === 1 ? 0.9 : 0 }}
-        />
-      </div>
 
-      {/* Slide track: each slide is one viewport; the track slides sideways. */}
-      <div
-        className="relative z-10 flex h-full transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none"
-        style={{ transform: `translateX(-${slide * 100}%)` }}
-      >
-        {/* Hero */}
-        <section
-          aria-label="Intro"
-          inert={slide !== 0}
-          className="flex h-full w-full shrink-0 items-center"
-        >
-          <div className="mx-auto w-full max-w-5xl px-5 sm:px-8">
-            <Reveal delay={80}>
-              <h1 className="text-5xl leading-[0.95] font-semibold sm:text-7xl">
-                <span className="text-gradient">Amirali Abbasi</span>
-              </h1>
-            </Reveal>
-            <Reveal delay={160}>
-              <p className="mt-5 max-w-xl text-lg text-foreground/80 sm:text-xl">
-                Data engineer in training, building pipelines and data models on top of a solid{" "}
-                <span className="text-foreground">Java and Spring Boot</span> foundation.
-              </p>
-            </Reveal>
-            <Reveal delay={240}>
-              <div className="mt-9 flex flex-wrap gap-3">
-                <button
-                  type="button"
-                  onClick={() => go(1)}
-                  className="rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform duration-200 hover:scale-105"
-                >
-                  Get in touch
-                </button>
-                <ResumeButton />
-              </div>
-            </Reveal>
-            <Reveal delay={320}>
-              <dl className="mt-12 grid grid-cols-2 gap-6 border-t border-border pt-8 sm:mt-16 sm:grid-cols-4">
-                <div>
-                  <dt>
-                    <span className="label-glow inline-flex items-center gap-2 rounded-full border bg-primary/5 px-3 py-1.5 text-sm font-medium text-primary">
-                      <span className="relative flex size-2">
-                        <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-60 motion-reduce:animate-none" />
-                        <span className="relative inline-flex size-2 rounded-full bg-primary" />
-                      </span>
-                      Available for work
-                    </span>
-                  </dt>
-                  <dd className="mt-2 text-xs text-muted-foreground">Tehran, Iran</dd>
-                </div>
-                {[
-                  ["Data Engineering", "Current focus"],
-                  ["B.Eng", "Computer Engineering"],
-                  ["M.Sc", "Software Engineering (ongoing)"],
-                ].map(([v, k]) => (
-                  <div key={k}>
-                    <dt className="font-display text-xl text-foreground">{v}</dt>
-                    <dd className="mt-1 text-xs text-muted-foreground">{k}</dd>
-                  </div>
-                ))}
-              </dl>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* Contact — corner brackets frame the stage, the email is the loudest thing on it. */}
-        <section
-          aria-label="Contact"
-          inert={slide !== 1}
-          className="flex h-full w-full shrink-0 items-center"
-        >
-          <div className="relative mx-auto w-full max-w-5xl px-5 sm:px-8">
-            <div aria-hidden className="contact-aura" />
-            {slide === 1 &&
-              (
-                [
-                  ["left-5 sm:left-8 top-0 rounded-tl-[2rem] border-t border-l", 0],
-                  ["right-5 sm:right-8 top-0 rounded-tr-[2rem] border-t border-r", 90],
-                  ["left-5 sm:left-8 bottom-0 rounded-bl-[2rem] border-b border-l", 180],
-                  ["right-5 sm:right-8 bottom-0 rounded-br-[2rem] border-b border-r", 270],
-                ] as const
-              ).map(([position, delay]) => (
-                <span
-                  key={position}
-                  aria-hidden
-                  style={{ animationDelay: `${delay}ms` }}
-                  className={`frame-corner absolute size-16 border-primary/45 sm:size-24 ${position}`}
-                />
-              ))}
-
-            <div className="px-6 py-10 text-center sm:px-16 sm:py-14">
-              <Reveal>
-                <p className="font-mono text-xs tracking-[0.35em] text-primary uppercase">
-                  Contact
-                </p>
-              </Reveal>
-              <Reveal delay={90}>
-                <h2 className="mx-auto mt-6 max-w-3xl text-4xl leading-[1.05] font-semibold text-balance sm:text-6xl lg:text-7xl">
-                  Let's build reliable data systems.
-                </h2>
-              </Reveal>
-              <Reveal delay={170}>
-                <p className="mx-auto mt-5 max-w-md text-base text-muted-foreground">
-                  Open to data engineering roles. Java background, data focus
-                </p>
-              </Reveal>
-              <Reveal delay={250}>
-                <a
-                  href="mailto:abbasigudarzi@gmail.com"
-                  className="group mt-8 inline-flex flex-wrap items-center justify-center gap-3 text-xl font-medium break-all text-foreground transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:text-3xl"
-                >
-                  <span className="link-sweep">abbasigudarzi@gmail.com</span>
-                  <ArrowUpRight className="size-6 shrink-0 text-primary transition-transform duration-300 ease-out group-hover:-translate-y-1 group-hover:translate-x-1" />
-                </a>
-              </Reveal>
-              <Reveal delay={330}>
-                <div className="mt-9">
-                  <ContactLinks />
-                </div>
-              </Reveal>
-              <Reveal delay={410}>
-                <ResumeButton className="mt-9" />
-              </Reveal>
+        {/* Stack strip: unlabelled band between the hero and the CV block. Hover pauses. */}
+        <Reveal delay={320}>
+          <div
+            aria-label="Tech stack"
+            role="region"
+            className="marquee mt-6 overflow-hidden border-y border-border py-5"
+          >
+            {/* Two identical lists in a row; sliding the pair by half loops seamlessly. */}
+            <div className="marquee-track flex w-max">
+              <ToolIcons />
+              <ToolIcons hidden />
             </div>
           </div>
-        </section>
-      </div>
+        </Reveal>
 
-      {/* Slide dots */}
-      <nav
-        aria-label="Slides"
-        className="absolute inset-x-0 bottom-5 z-30 flex justify-center gap-2 sm:bottom-8"
-      >
-        {SLIDES.map((label, i) => (
-          <button
-            key={label}
-            type="button"
-            onClick={() => go(i)}
-            aria-label={label}
-            aria-current={slide === i ? "true" : undefined}
-            className="flex h-11 items-center rounded-full px-1.5 focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:outline-none"
-          >
-            <span
-              className={`block h-1.5 rounded-full transition-all duration-500 ${
-                slide === i ? "w-8 bg-primary" : "w-1.5 bg-muted-foreground/50"
-              }`}
-            />
-          </button>
-        ))}
-      </nav>
-    </main>
+        <Section id="about" label="At a glance">
+          <dl className="mt-4">
+            {FACTS.map(([k, v], i) => (
+              <Reveal key={k} delay={i * 50}>
+                <div className="grid grid-cols-[7rem_1fr] gap-4 border-b border-border py-3 text-sm sm:grid-cols-[9rem_1fr]">
+                  <dt className="text-muted-foreground">{k}</dt>
+                  <dd>{v}</dd>
+                </div>
+              </Reveal>
+            ))}
+          </dl>
+        </Section>
+
+        <Section id="contact" label="Contact">
+          <Reveal delay={60}>
+            <p className="mt-8 font-display text-4xl leading-tight text-balance sm:text-5xl">
+              Let's build reliable systems.
+            </p>
+          </Reveal>
+          <Reveal delay={120}>
+            <p className="mt-4 max-w-xl leading-relaxed text-pretty text-muted-foreground">
+              Open to remote, hybrid, and on-site backend and data platform roles. Java, Spring
+              Boot, SQL.
+            </p>
+          </Reveal>
+          <Reveal delay={180}>
+            {/* Email card: the address is the link, copy sits beside it. */}
+            <div className="mt-8 flex items-center gap-3 rounded-lg border border-border bg-card p-2 pl-4">
+              <a
+                href={`mailto:${EMAIL}`}
+                className="group flex min-w-0 flex-1 items-center gap-2 py-2 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+              >
+                <span className="link-sweep truncate text-base sm:text-xl">{EMAIL}</span>
+                <ArrowUpRight className="size-4 shrink-0 text-muted-foreground transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
+              <CopyEmail />
+            </div>
+          </Reveal>
+          <Reveal delay={240}>
+            <div className="mt-6">
+              <ContactLinks />
+            </div>
+          </Reveal>
+        </Section>
+      </main>
+
+      <footer className="border-t border-border">
+        <div className="mx-auto flex max-w-3xl items-center justify-between px-5 py-6 text-xs text-muted-foreground sm:px-8">
+          <span>© {new Date().getFullYear()} Amirali Abbasi</span>
+          <a href="#top" className="transition-colors hover:text-foreground">
+            Back to top ↑
+          </a>
+        </div>
+      </footer>
+    </div>
   );
 }

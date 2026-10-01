@@ -35,7 +35,7 @@ const CONTACTS: { label: string; href: string; path: string }[] = [
 
 export default function ContactLinks() {
   return (
-    <ul className="flex flex-wrap justify-center gap-3">
+    <ul className="flex flex-wrap gap-2">
       {CONTACTS.map(({ label, href, path }) => {
         const external = href.startsWith("http");
         return (
@@ -45,9 +45,9 @@ export default function ContactLinks() {
               aria-label={label}
               title={label}
               {...(external ? { target: "_blank", rel: "noreferrer noopener" } : {})}
-              className="flex size-14 items-center justify-center rounded-full border border-border bg-secondary/60 text-foreground/80 transition duration-200 hover:-translate-y-0.5 hover:border-primary/60 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="flex size-11 items-center justify-center rounded-md border border-border text-muted-foreground transition-colors duration-200 hover:border-foreground/30 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
             >
-              <svg viewBox="0 0 24 24" className="size-5" fill="currentColor" aria-hidden>
+              <svg viewBox="0 0 24 24" className="size-[18px]" fill="currentColor" aria-hidden>
                 <path d={path} />
               </svg>
             </a>

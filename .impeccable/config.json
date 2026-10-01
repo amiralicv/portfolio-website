@@ -11,6 +11,36 @@
         ],
         "createdAt": "2026-09-22T05:37:45.078Z",
         "reason": "claude: stock React Bits ProfileCard holographic name/title, matches existing hero .text-gradient"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "newsreader",
+        "createdAt": "2026-10-01T21:34:02.737Z",
+        "reason": "user requested full retheme to a light resume style; DESIGN.md predates it"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "inter",
+        "createdAt": "2026-10-01T21:34:02.785Z",
+        "reason": "user requested full retheme to a light resume style; DESIGN.md predates it"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "ibm plex sans",
+        "createdAt": "2026-10-01T21:34:40.044Z",
+        "reason": "user requested full retheme to a light resume style; DESIGN.md predates it"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "pinyon script",
+        "createdAt": "2026-10-01T21:46:49.854Z",
+        "reason": "user asked for a Latin script/handwriting font for the header name"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "mrs saint delafield",
+        "createdAt": "2026-10-01T21:47:44.459Z",
+        "reason": "user asked for a script font that feels like real handwriting for the header name"
       }
     ]
   }

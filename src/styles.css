@@ -19,10 +19,9 @@
  */
 
 @theme inline {
-  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --radius-sm: calc(var(--radius) - 4px);
+  --font-display: "Newsreader", ui-serif, Georgia, serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;  --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
@@ -65,55 +64,63 @@
 }
 
 :root {
-  --radius: 0.875rem;
+  --radius: 0.5rem;
   /*
-   * Black base with the Spring leaf-green accent carried through.
-   *
-   * Surfaces are near-neutral (chroma <= 0.01) so the page reads as black; all
-   * remaining colour lives in --primary / --accent / --border, which keep the
-   * original Spring Boot green and its teal companion untouched.
+   * Paper and ink: warm off-white page, near-black text, one deep green
+   * (kept from the old Spring theme) used sparingly for the role line.
    */
-  --background: oklch(0.04 0 0);
-  --foreground: oklch(0.97 0.008 150);
-  --card: oklch(0.11 0.008 155);
-  --card-foreground: oklch(0.97 0.008 150);
-  --popover: oklch(0.11 0.008 155);
-  --popover-foreground: oklch(0.97 0.008 150);
-  --primary: oklch(0.76 0.19 143);
-  --primary-foreground: oklch(0.08 0.01 155);
-  --secondary: oklch(0.16 0.01 155);
-  --secondary-foreground: oklch(0.95 0.008 150);
-  --muted: oklch(0.13 0.008 155);
-  --muted-foreground: oklch(0.7 0.022 150);
-  --accent: oklch(0.72 0.14 180);
-  --accent-foreground: oklch(0.06 0 0);
-  --destructive: oklch(0.62 0.2 27);
-  --destructive-foreground: oklch(0.97 0.005 150);
-  --border: oklch(0.85 0.15 145 / 14%);
-  --input: oklch(0.85 0.15 145 / 18%);
-  --ring: oklch(0.76 0.19 143 / 60%);
-  --chart-1: oklch(0.76 0.19 143);
-  --chart-2: oklch(0.72 0.14 180);
-  --chart-3: oklch(0.68 0.15 130);
-  --chart-4: oklch(0.6 0.12 165);
-  --chart-5: oklch(0.85 0.14 120);
-  --sidebar: oklch(0.07 0.005 155);
-  --sidebar-foreground: oklch(0.97 0.008 150);
-  --sidebar-primary: oklch(0.76 0.19 143);
-  --sidebar-primary-foreground: oklch(0.08 0.01 155);
-  --sidebar-accent: oklch(0.16 0.01 155);
-  --sidebar-accent-foreground: oklch(0.97 0.008 150);
-  --sidebar-border: oklch(0.85 0.15 145 / 14%);
-  --sidebar-ring: oklch(0.76 0.19 143 / 60%);
+  --background: oklch(0.985 0.004 85);
+  --foreground: oklch(0.21 0.008 70);
+  --card: oklch(0.995 0.003 85);
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.995 0.003 85);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.45 0.09 155);
+  --primary-foreground: oklch(0.985 0.004 85);
+  --secondary: oklch(0.95 0.006 85);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.95 0.006 85);
+  --muted-foreground: oklch(0.5 0.01 70);
+  --accent: oklch(0.95 0.006 85);
+  --accent-foreground: var(--foreground);
+  --destructive: oklch(0.55 0.2 27);
+  --destructive-foreground: oklch(0.985 0.004 85);
+  --border: oklch(0.21 0.008 70 / 12%);
+  --input: oklch(0.21 0.008 70 / 16%);
+  --ring: oklch(0.45 0.09 155 / 55%);
+  --chart-1: oklch(0.45 0.09 155);
+  --chart-2: oklch(0.55 0.08 200);
+  --chart-3: oklch(0.6 0.1 80);
+  --chart-4: oklch(0.5 0.05 300);
+  --chart-5: oklch(0.65 0.08 30);
+  --sidebar: oklch(0.97 0.005 85);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--secondary);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+}
 
-  --surface-glass: color-mix(in oklab, var(--card) 65%, transparent);
-  --gradient-heading: linear-gradient(
-    100deg,
-    oklch(0.98 0.02 150) 0%,
-    oklch(0.86 0.17 143) 45%,
-    oklch(0.74 0.13 185) 100%
-  );
-  --shadow-elevated: 0 24px 70px -30px oklch(0 0 0 / 80%);
+/* Dark: the same sheet at night — warm charcoal, ivory ink, a lighter green. */
+.dark {
+  color-scheme: dark;
+  --background: oklch(0.17 0.006 70);
+  --foreground: oklch(0.93 0.01 85);
+  --card: oklch(0.2 0.006 70);
+  --popover: oklch(0.2 0.006 70);
+  --primary: oklch(0.76 0.11 155);
+  --primary-foreground: oklch(0.17 0.006 70);
+  --secondary: oklch(0.24 0.006 70);
+  --muted: oklch(0.24 0.006 70);
+  --muted-foreground: oklch(0.7 0.012 80);
+  --accent: oklch(0.24 0.006 70);
+  --destructive-foreground: oklch(0.93 0.01 85);
+  --border: oklch(0.93 0.01 85 / 12%);
+  --input: oklch(0.93 0.01 85 / 16%);
+  --ring: oklch(0.76 0.11 155 / 55%);
+  --sidebar: oklch(0.15 0.006 70);
 }
 
 @layer base {
@@ -122,7 +129,13 @@
   }
 
   html {
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 
   /*
@@ -149,6 +162,9 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    transition:
+      background-color 300ms ease,
+      color 300ms ease;
   }
 
   h1,
@@ -160,21 +176,9 @@
   }
 }
 
-@utility text-gradient {
-  background-image: var(--gradient-heading);
-  background-clip: text;
-  color: transparent;
-}
-
-@utility glass-panel {
-  background-color: var(--surface-glass);
-  backdrop-filter: blur(14px);
-  box-shadow: var(--shadow-elevated);
-}
-
 @utility reveal {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(12px);
   transition:
     opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
@@ -185,88 +189,32 @@
   transform: none;
 }
 
-/*
- * Project status pill: a soft glow that breathes. The glow lives on a
- * pseudo-element and only its opacity animates, so it stays on the compositor.
- */
-.label-glow {
-  position: relative;
-  border-color: color-mix(in oklab, var(--primary) 45%, transparent);
-  text-shadow: 0 0 8px color-mix(in oklab, var(--primary) 60%, transparent);
+/* Toolkit logo strip: fades out at both edges, scrolls right-to-left, pauses on hover. */
+.marquee {
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
 }
 
-.label-glow::after {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  pointer-events: none;
-  box-shadow:
-    0 0 14px 1px color-mix(in oklab, var(--primary) 55%, transparent),
-    inset 0 0 8px color-mix(in oklab, var(--primary) 25%, transparent);
-  opacity: 0.25;
-  animation: label-glow 2.4s ease-in-out infinite;
+.marquee-track {
+  animation: marquee 32s linear infinite;
 }
 
-@keyframes label-glow {
-  50% {
-    opacity: 1;
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .label-glow::after {
+  .marquee-track {
     animation: none;
-    opacity: 0.6;
   }
 }
 
-/*
- * Contact stage. The frame is four corner brackets that draw themselves in,
- * the aura is one slow conic sweep behind the type, and the email underline
- * wipes in from the left on hover.
- */
-.frame-corner {
-  opacity: 0;
-  animation: frame-draw 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-@keyframes frame-draw {
-  from {
-    opacity: 0;
-    scale: 0.4;
-  }
-  to {
-    opacity: 1;
-    scale: 1;
-  }
-}
-
-.contact-aura {
-  position: absolute;
-  inset: 10% 15%;
-  z-index: -1;
-  pointer-events: none;
-  border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.22;
-  background: conic-gradient(
-    from 0deg,
-    color-mix(in oklab, var(--primary) 70%, transparent),
-    transparent 35%,
-    color-mix(in oklab, var(--primary) 45%, transparent) 60%,
-    transparent 85%,
-    color-mix(in oklab, var(--primary) 70%, transparent)
-  );
-  animation: aura-turn 28s linear infinite;
-}
-
-@keyframes aura-turn {
-  to {
-    rotate: 360deg;
-  }
-}
-
+/* Email underline wipes in from the left on hover. */
 .link-sweep {
   position: relative;
   padding-bottom: 0.15em;
@@ -290,15 +238,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .frame-corner {
-    animation: none;
-    opacity: 1;
-  }
-
-  .contact-aura {
-    animation: none;
-  }
-
   .link-sweep::after {
     transition: none;
   }
