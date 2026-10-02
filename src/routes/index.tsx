@@ -1,18 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight, Check, Copy } from "lucide-react";
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
-import {
-  siApachemaven,
-  siDocker,
-  siGit,
-  siHibernate,
-  siIntellijidea,
-  siOpenjdk,
-  siPostgresql,
-  siPostman,
-  siSpring,
-  siSpringboot,
-} from "simple-icons";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Reveal } from "@/components/Reveal";
 import ThemeToggle from "@/components/ThemeToggle";
 import ContactLinks from "@/components/ContactLinks";
@@ -20,17 +8,17 @@ import ContactLinks from "@/components/ContactLinks";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Amirali Abbasi" },
+      { title: "Amirali Abbasi | Data Engineer" },
       {
         name: "description",
         content:
-          "Java backend developer building reliable server-side systems with Spring Boot, with a growing focus on databases and data pipelines.",
+          "Data engineer with a Java backend foundation, building batch pipelines and dimensional models with Python, SQL, and PostgreSQL.",
       },
-      { property: "og:title", content: "Amirali Abbasi — Java Backend Developer" },
+      { property: "og:title", content: "Amirali Abbasi | Data Engineer" },
       {
         property: "og:description",
         content:
-          "Java backend developer building reliable server-side systems with Spring Boot, with a growing focus on databases and data pipelines.",
+          "Data engineer with a Java backend foundation, building batch pipelines and dimensional models with Python, SQL, and PostgreSQL.",
       },
       { property: "og:type", content: "profile" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -44,48 +32,46 @@ const EMAIL = "abbasigudarzi@gmail.com";
 
 // Read like the key–value block at the top of a CV.
 const FACTS = [
-  ["Focus", "Backend & Data Systems"],
+  ["Focus", "Data Engineering: batch ETL, data modeling"],
   ["Degree", "B.Eng, Computer Engineering"],
   ["Studying", "M.Sc, Software Engineering"],
   ["Based in", "Tehran, Iran"],
 ];
 
-// simple-icons has no "Java" mark (Oracle asked for its removal); OpenJDK stands in.
+// Full-colour, filled logos (Devicon, MIT) served from public/icons. Shown grey and faded,
+// in colour on hover, so every mark reads as a solid shape rather than an outline.
 const TOOLKIT = [
-  { ...siOpenjdk, title: "Java" },
-  siSpringboot,
-  siSpring,
-  { ...siHibernate, title: "Hibernate / JPA" },
-  siPostgresql,
-  siDocker,
-  siGit,
-  siApachemaven,
-  siIntellijidea,
-  siPostman,
+  { file: "python", title: "Python" },
+  { file: "postgresql", title: "PostgreSQL" },
+  { file: "apacheairflow", title: "Airflow" },
+  { file: "docker", title: "Docker" },
+  { file: "git", title: "Git" },
+  { file: "java", title: "Java" },
 ];
 
-// Near-black brand colours (OpenJDK, IntelliJ) would vanish in dark mode; they hover to the ink colour instead.
-function brandColor(hex: string) {
-  const n = parseInt(hex, 16);
-  const luma = 0.299 * (n >> 16) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255);
-  return luma < 60 ? "var(--foreground)" : `#${hex}`;
-}
+// The marquee loops by sliding one copy's width, so a copy must be wider than the strip.
+// Six icons are not, so each copy shows the set twice (second pass hidden from screen readers).
+const STRIP = [0, 1].flatMap((pass) => TOOLKIT.map((icon) => ({ ...icon, pass })));
 
 function ToolIcons({ hidden = false }: { hidden?: boolean }) {
   return (
     <ul className="flex shrink-0" aria-hidden={hidden || undefined}>
-      {TOOLKIT.map((icon) => (
-        <li key={icon.title} className="pr-10 sm:pr-14">
-          <svg
-            viewBox="0 0 24 24"
-            role={hidden ? undefined : "img"}
-            aria-label={hidden ? undefined : icon.title}
-            className="size-8 fill-muted-foreground/70 transition-colors duration-300 hover:fill-[var(--brand)] sm:size-9"
-            style={{ "--brand": brandColor(icon.hex) } as CSSProperties}
-          >
-            <title>{icon.title}</title>
-            <path d={icon.path} />
-          </svg>
+      {STRIP.map((icon) => (
+        <li
+          key={`${icon.pass}-${icon.file}`}
+          aria-hidden={(!hidden && icon.pass === 1) || undefined}
+          className="pr-10 sm:pr-14"
+        >
+          <img
+            src={`/icons/${icon.file}.svg`}
+            alt={hidden || icon.pass ? "" : icon.title}
+            title={icon.title}
+            width={36}
+            height={36}
+            loading="lazy"
+            draggable={false}
+            className="size-8 opacity-45 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0 sm:size-9"
+          />
         </li>
       ))}
     </ul>
@@ -154,7 +140,7 @@ function Portfolio() {
                 <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-50 motion-reduce:animate-none" />
                 <span className="relative inline-flex size-1.5 rounded-full bg-primary" />
               </span>
-              Open to remote &amp; on-site
+              Open to remote, hybrid &amp; on-site
             </span>
             <ThemeToggle />
           </Reveal>
@@ -163,13 +149,13 @@ function Portfolio() {
           </Reveal>
           <Reveal delay={140}>
             <p className="mt-4 font-mono text-xs tracking-[0.2em] text-primary uppercase">
-              Java Backend Developer
+              Data Engineer
             </p>
           </Reveal>
           <Reveal delay={200}>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-foreground/80">
-              Java backend developer building reliable server-side systems with Spring Boot, with a
-              growing focus on databases and data pipelines.
+              Data engineer with a Java backend foundation, building batch pipelines and dimensional
+              models with Python, SQL, and PostgreSQL.
             </p>
           </Reveal>
           <Reveal delay={260}>
@@ -224,13 +210,12 @@ function Portfolio() {
         <Section id="contact" label="Contact">
           <Reveal delay={60}>
             <p className="mt-8 font-display text-4xl leading-tight text-balance sm:text-5xl">
-              Let's build reliable systems.
+              Let's build reliable data systems.
             </p>
           </Reveal>
           <Reveal delay={120}>
             <p className="mt-4 max-w-xl leading-relaxed text-pretty text-muted-foreground">
-              Open to remote, hybrid, and on-site backend and data platform roles. Java, Spring
-              Boot, SQL.
+              Open to remote, hybrid, and on-site data engineering roles. Python, SQL, PostgreSQL.
             </p>
           </Reveal>
           <Reveal delay={180}>

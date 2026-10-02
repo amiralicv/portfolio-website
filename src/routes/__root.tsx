@@ -33,7 +33,8 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+// TanStack Router types `error` as unknown since the CVE-2026-102989 upgrade.
+function ErrorComponent({ error, reset }: { error: unknown; reset: () => void }) {
   console.error(error);
   const router = useRouter();
 
@@ -73,26 +74,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Amirali Abbasi" },
+      { title: "Amirali Abbasi | Data Engineer" },
       {
         name: "description",
         content:
-          "Java backend engineer in Tehran building APIs and services with Java, Spring Boot, PostgreSQL and clean architecture. Experience with KYC, payments and SMS notification systems.",
+          "Data engineer with a Java backend foundation, building batch pipelines and dimensional models with Python, SQL, and PostgreSQL.",
       },
       { name: "author", content: "Amirali Abbasi" },
-      { property: "og:title", content: "Amirali Abbasi — Software Engineer" },
+      { property: "og:title", content: "Amirali Abbasi | Data Engineer" },
       {
         property: "og:description",
         content:
-          "Java backend engineer in Tehran building APIs and services with Java, Spring Boot, PostgreSQL and clean architecture. Experience with KYC, payments and SMS notification systems.",
+          "Data engineer with a Java backend foundation, building batch pipelines and dimensional models with Python, SQL, and PostgreSQL.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Amirali Abbasi — Software Engineer" },
+      { name: "twitter:title", content: "Amirali Abbasi | Data Engineer" },
       {
         name: "twitter:description",
         content:
-          "Java backend engineer in Tehran building APIs and services with Java, Spring Boot, PostgreSQL and clean architecture. Experience with KYC, payments and SMS notification systems.",
+          "Data engineer with a Java backend foundation, building batch pipelines and dimensional models with Python, SQL, and PostgreSQL.",
       },
     ],
     links: [
