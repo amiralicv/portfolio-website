@@ -12,13 +12,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Data engineer with a Java backend foundation, building batch pipelines and dimensional models with Python, SQL, and PostgreSQL.",
+          "M.Sc student in Software Engineering, building my career in data: data engineering, data modeling, analytics, and AI/ML.",
       },
       { property: "og:title", content: "Amirali Abbasi | Data Engineer" },
       {
         property: "og:description",
         content:
-          "Data engineer with a Java backend foundation, building batch pipelines and dimensional models with Python, SQL, and PostgreSQL.",
+          "M.Sc student in Software Engineering, building my career in data: data engineering, data modeling, analytics, and AI/ML.",
       },
       { property: "og:type", content: "profile" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -46,25 +46,26 @@ const TOOLKIT = [
   { file: "apacheairflow", title: "Airflow" },
   { file: "docker", title: "Docker" },
   { file: "git", title: "Git" },
-  { file: "java", title: "Java" },
+  { file: "apachespark", title: "Spark" },
+  { file: "apachekafka", title: "Kafka" },
+  { file: "pandas", title: "pandas" },
+  { file: "numpy", title: "NumPy" },
+  { file: "jupyter", title: "Jupyter" },
+  { file: "scikitlearn", title: "scikit-learn" },
+  { file: "pytorch", title: "PyTorch" },
+  { file: "tensorflow", title: "TensorFlow" },
+  { file: "cplusplus", title: "C++" },
+  { file: "rust", title: "Rust" },
 ];
-
-// The marquee loops by sliding one copy's width, so a copy must be wider than the strip.
-// Six icons are not, so each copy shows the set twice (second pass hidden from screen readers).
-const STRIP = [0, 1].flatMap((pass) => TOOLKIT.map((icon) => ({ ...icon, pass })));
 
 function ToolIcons({ hidden = false }: { hidden?: boolean }) {
   return (
     <ul className="flex shrink-0" aria-hidden={hidden || undefined}>
-      {STRIP.map((icon) => (
-        <li
-          key={`${icon.pass}-${icon.file}`}
-          aria-hidden={(!hidden && icon.pass === 1) || undefined}
-          className="pr-10 sm:pr-14"
-        >
+      {TOOLKIT.map((icon) => (
+        <li key={icon.file} className="pr-10 sm:pr-14">
           <img
             src={`/icons/${icon.file}.svg`}
-            alt={hidden || icon.pass ? "" : icon.title}
+            alt={hidden ? "" : icon.title}
             title={icon.title}
             width={36}
             height={36}
@@ -154,8 +155,10 @@ function Portfolio() {
           </Reveal>
           <Reveal delay={200}>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-foreground/80">
-              Data engineer with a Java backend foundation, building batch pipelines and dimensional
-              models with Python, SQL, and PostgreSQL.
+              M.Sc student in Software Engineering, building my career in the data field. I'm studying
+              and practicing data engineering, data modeling, and analytics, and learning AI and
+              machine learning to broaden how I work with data. Open to remote, hybrid, and on-site
+              opportunities. My resume has the details of what I'm building and learning.
             </p>
           </Reveal>
           <Reveal delay={260}>
