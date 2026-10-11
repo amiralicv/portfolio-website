@@ -55,7 +55,6 @@ const TOOLKIT = [
   { file: "pytorch", title: "PyTorch" },
   { file: "tensorflow", title: "TensorFlow" },
   { file: "cplusplus", title: "C++" },
-  { file: "rust", title: "Rust" },
 ];
 
 function ToolIcons({ hidden = false }: { hidden?: boolean }) {
