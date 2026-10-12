@@ -32,7 +32,7 @@ const EMAIL = "abbasigudarzi@gmail.com";
 
 // Read like the key–value block at the top of a CV.
 const FACTS = [
-  ["Focus", "Data Engineering: batch ETL, data modeling"],
+  ["Focus", "Data & AI: data engineering, analytics, machine learning"],
   ["Degree", "B.Eng, Computer Engineering"],
   ["Studying", "M.Sc, Software Engineering"],
   ["Based in", "Tehran, Iran"],
@@ -46,14 +46,10 @@ const TOOLKIT = [
   { file: "apacheairflow", title: "Airflow" },
   { file: "docker", title: "Docker" },
   { file: "git", title: "Git" },
-  { file: "apachespark", title: "Spark" },
-  { file: "apachekafka", title: "Kafka" },
   { file: "pandas", title: "pandas" },
   { file: "numpy", title: "NumPy" },
   { file: "jupyter", title: "Jupyter" },
   { file: "scikitlearn", title: "scikit-learn" },
-  { file: "pytorch", title: "PyTorch" },
-  { file: "tensorflow", title: "TensorFlow" },
   { file: "cplusplus", title: "C++" },
 ];
 
@@ -149,15 +145,15 @@ function Portfolio() {
           </Reveal>
           <Reveal delay={140}>
             <p className="mt-4 font-mono text-xs tracking-[0.2em] text-primary uppercase">
-              Data Engineer
+              Data & AI · Engineering · Analytics
             </p>
           </Reveal>
           <Reveal delay={200}>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-foreground/80">
-              M.Sc student in Software Engineering, building my career in the data field. I'm studying
-              and practicing data engineering, data modeling, and analytics, and learning AI and
-              machine learning to broaden how I work with data. Open to remote, hybrid, and on-site
-              opportunities. My resume has the details of what I'm building and learning.
+              M.Sc student in Software Engineering, working across the data lifecycle: building
+              pipelines and data models, analyzing data, and learning machine learning. I bring a
+              software engineering foundation from professional backend work. Open to remote, hybrid,
+              and on-site opportunities in data and AI.
             </p>
           </Reveal>
           <Reveal delay={260}>
@@ -196,7 +192,7 @@ function Portfolio() {
           </div>
         </Reveal>
 
-        <Section id="about" label="At a glance">
+        <Section id="about" label="Focus">
           <dl className="mt-4">
             {FACTS.map(([k, v], i) => (
               <Reveal key={k} delay={i * 50}>
@@ -212,12 +208,12 @@ function Portfolio() {
         <Section id="contact" label="Contact">
           <Reveal delay={60}>
             <p className="mt-8 font-display text-4xl leading-tight text-balance sm:text-5xl">
-              Let's build reliable data systems.
+              Let's build something with data.
             </p>
           </Reveal>
           <Reveal delay={120}>
             <p className="mt-4 max-w-xl leading-relaxed text-pretty text-muted-foreground">
-              Open to remote, hybrid, and on-site data engineering roles. Python, SQL, PostgreSQL.
+              Open to remote, hybrid, and on-site roles in data and AI
             </p>
           </Reveal>
           <Reveal delay={180}>
