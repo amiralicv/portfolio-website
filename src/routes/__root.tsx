@@ -74,26 +74,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Amirali Abbasi | Data Engineer" },
+      { title: "Amirali Abbasi | Data Engineering" },
       {
         name: "description",
         content:
-          "Data engineer with a Java backend foundation, building batch pipelines and dimensional models with Python, SQL, and PostgreSQL.",
+          "M.Sc student in Software Engineering focused on data engineering: batch pipelines, data modeling, and orchestration.",
       },
       { name: "author", content: "Amirali Abbasi" },
-      { property: "og:title", content: "Amirali Abbasi | Data Engineer" },
+      { property: "og:title", content: "Amirali Abbasi | Data Engineering" },
       {
         property: "og:description",
         content:
-          "Data engineer with a Java backend foundation, building batch pipelines and dimensional models with Python, SQL, and PostgreSQL.",
+          "M.Sc student in Software Engineering focused on data engineering: batch pipelines, data modeling, and orchestration.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Amirali Abbasi | Data Engineer" },
+      { name: "twitter:title", content: "Amirali Abbasi | Data Engineering" },
       {
         name: "twitter:description",
         content:
-          "Data engineer with a Java backend foundation, building batch pipelines and dimensional models with Python, SQL, and PostgreSQL.",
+          "M.Sc student in Software Engineering focused on data engineering: batch pipelines, data modeling, and orchestration.",
       },
     ],
     links: [

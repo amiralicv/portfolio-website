@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Check, Copy } from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Reveal } from "@/components/Reveal";
@@ -8,20 +8,26 @@ import ContactLinks from "@/components/ContactLinks";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Amirali Abbasi | Data Engineer" },
+      { title: "Amirali Abbasi | Data Engineering" },
       {
         name: "description",
         content:
-          "M.Sc student in Software Engineering, building my career in data: data engineering, data modeling, analytics, and AI/ML.",
+          "M.Sc student in Software Engineering focused on data engineering: batch pipelines, data modeling, and orchestration.",
       },
-      { property: "og:title", content: "Amirali Abbasi | Data Engineer" },
+      { property: "og:title", content: "Amirali Abbasi | Data Engineering" },
       {
         property: "og:description",
         content:
-          "M.Sc student in Software Engineering, building my career in data: data engineering, data modeling, analytics, and AI/ML.",
+          "M.Sc student in Software Engineering focused on data engineering: batch pipelines, data modeling, and orchestration.",
       },
       { property: "og:type", content: "profile" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Amirali Abbasi | Data Engineering" },
+      {
+        name: "twitter:description",
+        content:
+          "M.Sc student in Software Engineering focused on data engineering: batch pipelines, data modeling, and orchestration.",
+      },
     ],
   }),
   component: Portfolio,
@@ -32,9 +38,10 @@ const EMAIL = "abbasigudarzi@gmail.com";
 
 // Read like the key–value block at the top of a CV.
 const FACTS = [
-  ["Focus", "Data & AI: data engineering, analytics, machine learning"],
-  ["Degree", "B.Eng, Computer Engineering"],
+  ["Focus", "Data Engineering: batch pipelines, data modeling"],
   ["Studying", "M.Sc, Software Engineering"],
+  ["Degree", "B.Eng, Computer Engineering"],
+  ["Exploring", "Rust, AI & ML"],
   ["Based in", "Tehran, Iran"],
 ];
 
@@ -50,7 +57,7 @@ const TOOLKIT = [
   { file: "numpy", title: "NumPy" },
   { file: "jupyter", title: "Jupyter" },
   { file: "scikitlearn", title: "scikit-learn" },
-  { file: "cplusplus", title: "C++" },
+  { file: "rust", title: "Rust" },
 ];
 
 function ToolIcons({ hidden = false }: { hidden?: boolean }) {
@@ -75,11 +82,11 @@ function ToolIcons({ hidden = false }: { hidden?: boolean }) {
 }
 
 const BUTTON =
-  "inline-flex h-11 items-center gap-2 rounded-md px-5 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none";
+  "inline-flex h-11 items-center gap-2 rounded-md px-5 text-sm font-medium transition-[color,background-color,transform] duration-200 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none";
 
 function Section({ id, label, children }: { id: string; label: string; children: ReactNode }) {
   return (
-    <section id={id} className="scroll-mt-6 py-6 sm:py-8">
+    <section id={id} className="scroll-mt-6 py-10 sm:py-14">
       <Reveal>
         <div className="flex items-center gap-4">
           <h2 className="font-mono text-[11px] font-normal tracking-[0.2em] text-muted-foreground uppercase">
@@ -126,34 +133,35 @@ function CopyEmail() {
 
 function Portfolio() {
   return (
-    <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
-      <main id="top" className="mx-auto max-w-3xl px-5 pb-12 sm:px-8">
+    <div className="relative min-h-screen overflow-x-clip bg-background text-foreground transition-colors duration-300">
+      <main id="top" className="relative mx-auto max-w-3xl px-5 pb-12 sm:px-8">
         {/* Intro */}
-        <div className="pt-8 pb-4 sm:pt-20">
+        <div className="pt-8 pb-6 sm:pt-24">
           <Reveal className="flex items-center justify-between gap-4">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
+            <span className="inline-flex items-center gap-2 text-xs text-muted-foreground">
               <span className="relative flex size-1.5">
-                <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-50 motion-reduce:animate-none" />
-                <span className="relative inline-flex size-1.5 rounded-full bg-primary" />
+                <span className="absolute inline-flex size-full animate-ping rounded-md bg-primary opacity-50 motion-reduce:animate-none" />
+                <span className="relative inline-flex size-1.5 rounded-md bg-primary" />
               </span>
               Open to remote, hybrid &amp; on-site
             </span>
             <ThemeToggle />
           </Reveal>
           <Reveal delay={80}>
-            <h1 className="mt-6 text-5xl leading-none sm:text-7xl">Amirali Abbasi</h1>
+            <h1 className="mt-6 text-[2.5rem] leading-[0.95] font-normal tracking-tight sm:text-8xl">
+              Amirali Abbasi
+            </h1>
           </Reveal>
           <Reveal delay={140}>
             <p className="mt-4 font-mono text-xs tracking-[0.2em] text-primary uppercase">
-              Data & AI · Engineering · Analytics
+              Data Engineering
             </p>
           </Reveal>
           <Reveal delay={200}>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-foreground/80">
-              M.Sc student in Software Engineering, working across the data lifecycle: building
-              pipelines and data models, analyzing data, and learning machine learning. I bring a
-              software engineering foundation from professional backend work. Open to remote, hybrid,
-              and on-site opportunities in data and AI.
+              M.Sc student in Software Engineering, focused on data engineering. I study and build
+              batch pipelines and data models, and I&apos;m learning AI and Rust along the way. Open
+              to remote, hybrid, and on-site opportunities.
             </p>
           </Reveal>
           <Reveal delay={260}>
@@ -164,6 +172,9 @@ function Portfolio() {
               >
                 Get in touch
               </a>
+              <Link to="/projects" className={`${BUTTON} border border-border hover:bg-secondary`}>
+                Projects
+              </Link>
               <a
                 href={RESUME_URL}
                 target="_blank"
@@ -196,7 +207,7 @@ function Portfolio() {
           <dl className="mt-4">
             {FACTS.map(([k, v], i) => (
               <Reveal key={k} delay={i * 50}>
-                <div className="grid grid-cols-[7rem_1fr] gap-4 border-b border-border py-3 text-sm sm:grid-cols-[9rem_1fr]">
+                <div className="grid grid-cols-[7rem_1fr] gap-4 border-b border-border py-4 text-sm transition-colors duration-200 hover:border-primary/50 sm:grid-cols-[9rem_1fr] sm:text-base">
                   <dt className="text-muted-foreground">{k}</dt>
                   <dd>{v}</dd>
                 </div>
@@ -207,18 +218,18 @@ function Portfolio() {
 
         <Section id="contact" label="Contact">
           <Reveal delay={60}>
-            <p className="mt-8 font-display text-4xl leading-tight text-balance sm:text-5xl">
-              Let's build something with data.
+            <p className="mt-8 font-display text-5xl leading-[1.02] text-balance sm:text-6xl">
+              Let's talk data.
             </p>
           </Reveal>
           <Reveal delay={120}>
             <p className="mt-4 max-w-xl leading-relaxed text-pretty text-muted-foreground">
-              Open to remote, hybrid, and on-site roles in data and AI
+              Open to remote, hybrid, and on-site opportunities.
             </p>
           </Reveal>
           <Reveal delay={180}>
             {/* Email card: the address is the link, copy sits beside it. */}
-            <div className="mt-8 flex items-center gap-3 rounded-lg border border-border bg-card p-2 pl-4">
+            <div className="mt-8 flex items-center gap-3 rounded-md border border-border bg-card p-2 pl-4">
               <a
                 href={`mailto:${EMAIL}`}
                 className="group flex min-w-0 flex-1 items-center gap-2 py-2 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
