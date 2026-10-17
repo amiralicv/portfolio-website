@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Check, Copy } from "lucide-react";
+import { ArrowUpRight, Check, Copy, Download } from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Reveal } from "@/components/Reveal";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -33,7 +33,8 @@ export const Route = createFileRoute("/")({
   component: Portfolio,
 });
 
-const RESUME_URL = "https://flowcv.com/resume/vcb1fuhh1roi";
+// The same endpoint the Download button on the FlowCV page calls: returns the PDF directly.
+const RESUME_URL = "https://app.flowcv.com/api/public/download_resume?token=vcb1fuhh1roi";
 const EMAIL = "abbasigudarzi@gmail.com";
 
 // Read like the key–value block at the top of a CV.
@@ -44,42 +45,6 @@ const FACTS = [
   ["Exploring", "Rust, AI & ML"],
   ["Based in", "Tehran, Iran"],
 ];
-
-// Full-colour, filled logos (Devicon, MIT) served from public/icons. Shown grey and faded,
-// in colour on hover, so every mark reads as a solid shape rather than an outline.
-const TOOLKIT = [
-  { file: "python", title: "Python" },
-  { file: "postgresql", title: "PostgreSQL" },
-  { file: "apacheairflow", title: "Airflow" },
-  { file: "docker", title: "Docker" },
-  { file: "git", title: "Git" },
-  { file: "pandas", title: "pandas" },
-  { file: "numpy", title: "NumPy" },
-  { file: "jupyter", title: "Jupyter" },
-  { file: "scikitlearn", title: "scikit-learn" },
-  { file: "rust", title: "Rust" },
-];
-
-function ToolIcons({ hidden = false }: { hidden?: boolean }) {
-  return (
-    <ul className="flex shrink-0" aria-hidden={hidden || undefined}>
-      {TOOLKIT.map((icon) => (
-        <li key={icon.file} className="pr-10 sm:pr-14">
-          <img
-            src={`/icons/${icon.file}.svg`}
-            alt={hidden ? "" : icon.title}
-            title={icon.title}
-            width={36}
-            height={36}
-            loading="lazy"
-            draggable={false}
-            className="size-8 opacity-45 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0 sm:size-9"
-          />
-        </li>
-      ))}
-    </ul>
-  );
-}
 
 const BUTTON =
   "inline-flex h-11 items-center gap-2 rounded-md px-5 text-sm font-medium transition-[color,background-color,transform] duration-200 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none";
@@ -182,26 +147,11 @@ function Portfolio() {
                 className={`${BUTTON} border border-border hover:bg-secondary`}
               >
                 Resume
-                <ArrowUpRight className="size-4" aria-hidden />
+                <Download className="size-4" aria-hidden />
               </a>
             </div>
           </Reveal>
         </div>
-
-        {/* Stack strip: unlabelled band between the hero and the CV block. Hover pauses. */}
-        <Reveal delay={320}>
-          <div
-            aria-label="Tech stack"
-            role="region"
-            className="marquee mt-6 overflow-hidden border-y border-border py-5"
-          >
-            {/* Two identical lists in a row; sliding the pair by half loops seamlessly. */}
-            <div className="marquee-track flex w-max">
-              <ToolIcons />
-              <ToolIcons hidden />
-            </div>
-          </div>
-        </Reveal>
 
         <Section id="about" label="Focus">
           <dl className="mt-4">
@@ -219,7 +169,7 @@ function Portfolio() {
         <Section id="contact" label="Contact">
           <Reveal delay={60}>
             <p className="mt-8 font-display text-5xl leading-[1.02] text-balance sm:text-6xl">
-              Let's talk data.
+              Let's build together.
             </p>
           </Reveal>
           <Reveal delay={120}>

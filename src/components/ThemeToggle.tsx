@@ -11,14 +11,21 @@ export default function ThemeToggle({ className = "" }: { className?: string }) 
   useEffect(() => setDark(document.documentElement.classList.contains("dark")), []);
 
   const toggle = () => {
-    const next = !document.documentElement.classList.contains("dark");
-    document.documentElement.classList.toggle("dark", next);
+    const root = document.documentElement;
+    const next = !root.classList.contains("dark");
+    const apply = () => {
+      root.classList.toggle("dark", next);
+      setDark(next);
+    };
     try {
       localStorage.setItem("theme", next ? "dark" : "light");
     } catch {
       // Storage blocked: the switch still works for this visit.
     }
-    setDark(next);
+    // Every color transition runs the same 500ms (see .theme-switching), so nothing lags or freezes.
+    root.classList.add("theme-switching");
+    apply();
+    setTimeout(() => root.classList.remove("theme-switching"), 550);
   };
 
   return (

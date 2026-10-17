@@ -1,8 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import ThemeToggle from "@/components/ThemeToggle";
+import GithubStats from "@/components/GithubStats";
+import projectsData from "@/data/projects.json";
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
@@ -13,56 +15,51 @@ export const Route = createFileRoute("/projects")({
 
 type Project = { title: string; description: string; tags: string[]; href: string };
 
-// Hand-written entries. Repos tagged `portfolio-<section id>` on GitHub (e.g.
-// `portfolio-rust`) are merged in automatically, so projects can be added from
-// the GitHub phone app: tag the repo, no deploy.
+// Hand-written entries live in src/data/projects.json. Repos
+// tagged `portfolio-<section id>` on GitHub (e.g. `portfolio-rust`) are merged in automatically,
+// so projects can be added from the GitHub phone app: tag the repo, no deploy.
 const SECTIONS: { id: string; label: string; projects: Project[] }[] = [
-  {
-    id: "data-engineering",
-    label: "Data Engineering",
-    projects: [
-      {
-        title: "data-pipeline-platform",
-        description:
-          "A batch ETL pipeline that loads data into a PostgreSQL star schema, orchestrated with Airflow. Built in Python.",
-        tags: ["Python", "PostgreSQL", "Airflow", "Docker"],
-        href: "https://github.com/amiraliverse/data-pipeline-platform",
-      },
-    ],
-  },
-  { id: "backend", label: "Backend", projects: [] },
-  { id: "rust", label: "Rust", projects: [] },
-  { id: "ai", label: "AI", projects: [] },
-];
+  { id: "data-engineering", label: "Data Engineering" },
+  { id: "backend", label: "Backend" },
+  { id: "rust", label: "Rust" },
+  { id: "ai", label: "AI" },
+].map((s) => ({
+  ...s,
+  projects: projectsData.filter((p) => p.section === s.id).map((p) => ({ ...p, href: p.repo })),
+}));
+
+const CARD =
+  "group lux relative mt-3 block overflow-hidden rounded-xl border border-border bg-card p-4 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none sm:mt-4 sm:p-7";
 
 function ProjectCard({ project }: { project: Project }) {
-  return (
-    <a
-      href={project.href}
-      target="_blank"
-      rel="noreferrer noopener"
-      className="group lift mt-4 block rounded-md border border-border bg-card p-6 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none sm:p-8"
-    >
-      <h3 className="font-display text-2xl sm:text-3xl">{project.title}</h3>
-      <p className="mt-3 max-w-prose leading-relaxed text-muted-foreground">
+  const body = (
+    <>
+      <ArrowUpRight
+        aria-hidden
+        strokeWidth={1}
+        className="absolute top-4 right-4 size-6 text-foreground/50 sm:top-7 sm:right-7 sm:size-7"
+      />
+      <h3 className="pr-11 font-display text-xl leading-tight tracking-tight break-words sm:pr-14 sm:text-3xl">
+        {project.title}
+      </h3>
+      <p className="mt-2 max-w-prose text-sm leading-relaxed text-muted-foreground sm:mt-3 sm:text-base">
         {project.description}
       </p>
-      <ul className="mt-4 flex flex-wrap gap-2">
+      <ul className="mt-3 flex flex-wrap gap-1.5 sm:mt-5 sm:gap-2">
         {project.tags.map((t) => (
           <li
             key={t}
-            className="rounded-md border border-border px-2.5 py-0.5 font-mono text-[11px] text-muted-foreground"
+            className="rounded-full border border-border bg-muted px-2.5 py-0.5 font-mono text-[10px] tracking-wide text-muted-foreground sm:text-[11px]"
           >
             {t}
           </li>
         ))}
       </ul>
-      <span className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-primary">
-        GitHub{" "}
-        <span aria-hidden className="nudge">
-          →
-        </span>
-      </span>
+    </>
+  );
+  return (
+    <a href={project.href} target="_blank" rel="noreferrer noopener" className={CARD}>
+      {body}
     </a>
   );
 }
@@ -131,6 +128,9 @@ function Projects() {
           <h1 className="mt-6 text-6xl leading-[0.95] font-normal tracking-tight sm:text-8xl">
             Projects
           </h1>
+        </Reveal>
+        <Reveal delay={100}>
+          <GithubStats />
         </Reveal>
         <Reveal delay={120}>
           <div
