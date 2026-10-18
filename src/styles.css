@@ -237,7 +237,8 @@
 html.theme-switching *,
 html.theme-switching *::before,
 html.theme-switching *::after {
-  transition-property: color, background-color, border-color, fill, stroke, transform, opacity !important;
+  transition-property:
+    color, background-color, border-color, fill, stroke, transform, opacity !important;
   transition-duration: 500ms !important;
   transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1) !important;
   transition-delay: 0s !important;
@@ -262,4 +263,188 @@ html.theme-switching *::after {
 
 .lux:active {
   transform: scale(0.985);
+}
+
+/* Long-form reading (blog and docs). Rendered markdown, styled by element. */
+.prose-article {
+  counter-reset: sec;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: color-mix(in oklch, var(--foreground) 88%, var(--background));
+}
+.prose-article > * + * {
+  margin-top: 1.1em;
+}
+.prose-article > :not(.tbl) {
+  max-width: 41rem;
+}
+.prose-article h2 {
+  counter-increment: sec;
+  margin-top: 3.5em;
+  font-size: clamp(1.9rem, 4vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.08;
+  color: var(--foreground);
+  scroll-margin-top: 5rem;
+}
+.prose-article h2::before {
+  content: counter(sec, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--primary);
+}
+.prose-article > h2:first-child {
+  margin-top: 0;
+}
+.prose-article h3 {
+  margin-top: 2.8em;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primary);
+  scroll-margin-top: 5rem;
+}
+.prose-article h3::before {
+  content: "";
+  display: inline-block;
+  width: 1.5rem;
+  height: 1px;
+  margin-right: 0.75rem;
+  vertical-align: middle;
+  background: var(--primary);
+}
+.prose-article h4 {
+  margin-top: 2.6em;
+  padding-top: 1.3em;
+  border-top: 1px solid var(--border);
+  font-size: 1.75rem;
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--foreground);
+  scroll-margin-top: 5rem;
+}
+.prose-article h3 + h4 {
+  margin-top: 1.4em;
+  border-top: 0;
+  padding-top: 0;
+}
+.prose-article strong {
+  font-weight: 500;
+  color: var(--foreground);
+}
+.prose-article a {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklch, var(--primary) 55%, transparent);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.2em;
+  transition:
+    color 200ms,
+    text-decoration-color 200ms;
+}
+.prose-article a:hover {
+  color: var(--primary);
+  text-decoration-color: var(--primary);
+}
+.prose-article ul {
+  list-style: disc;
+  padding-left: 1.3rem;
+}
+.prose-article li {
+  padding-left: 0.2rem;
+}
+.prose-article li + li {
+  margin-top: 0.45em;
+}
+.prose-article li::marker {
+  color: var(--primary);
+}
+.prose-article p.evidence {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  margin-top: 0.4em;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+.prose-article p.evidence::before {
+  content: "";
+  flex: none;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--primary);
+  transform: translateY(-0.05rem);
+}
+.prose-article p.evidence strong {
+  font-weight: 400;
+  color: var(--foreground);
+}
+.prose-article p.src {
+  margin-top: 1.4em;
+  padding-top: 0.9em;
+  border-top: 1px dashed var(--border);
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  color: var(--muted-foreground);
+  overflow-wrap: anywhere;
+}
+.prose-article .tbl {
+  margin-block: 1.6em;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--card);
+}
+.prose-article table {
+  width: 100%;
+  min-width: 34rem;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+.prose-article th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  background: var(--secondary);
+  white-space: nowrap;
+}
+.prose-article td {
+  padding: 0.75rem 1rem;
+  vertical-align: top;
+  border-top: 1px solid var(--border);
+}
+.prose-article td:first-child {
+  font-weight: 500;
+  color: var(--foreground);
+}
+.prose-article tbody tr {
+  transition: background-color 200ms;
+}
+.prose-article tbody tr:hover {
+  background: color-mix(in oklch, var(--secondary) 60%, transparent);
+}
+.prose-article hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+}
+.prose-article code {
+  padding: 0.1em 0.35em;
+  border-radius: 0.35rem;
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.86em;
 }

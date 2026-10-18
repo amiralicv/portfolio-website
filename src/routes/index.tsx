@@ -140,6 +140,9 @@ function Portfolio() {
               <Link to="/projects" className={`${BUTTON} border border-border hover:bg-secondary`}>
                 Projects
               </Link>
+              <Link to="/writing" className={`${BUTTON} border border-border hover:bg-secondary`}>
+                Writing
+              </Link>
               <a
                 href={RESUME_URL}
                 target="_blank"
