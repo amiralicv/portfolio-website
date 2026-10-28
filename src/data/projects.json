@@ -1,9 +1,0 @@
-[
-  {
-    "section": "data-engineering",
-    "title": "data-pipeline-platform",
-    "description": "A batch ETL pipeline that loads data into a PostgreSQL star schema, orchestrated with Airflow. Built in Python.",
-    "tags": ["Python", "PostgreSQL", "Airflow", "Docker"],
-    "repo": "https://github.com/amiraliverse/data-pipeline-platform"
-  }
-]

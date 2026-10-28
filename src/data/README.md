@@ -1,11 +1,11 @@
 # Data contracts
 
-Static JSON the site reads at build time. Hand-edit, or generate it from a script/service.
+Static data the site reads at build time. Hand-edit, or generate it from a script/service.
 
-## `projects.json`
+## `projects.ts`
 
-Array of `{ section, title, description, tags[], repo }`.
-`section` is a tab id on /projects (`data-engineering`, `backend`, `rust`, `ai`).
+Typed array of `{ topic, title, description, tech[], url, status?, date }`. `topic` is free text.
+The /projects page lists them newest first by `date`.
 
 ## `github.json`
 

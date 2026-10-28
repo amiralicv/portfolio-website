@@ -9,7 +9,7 @@ type Stats = {
 };
 const stats = raw as Stats;
 
-/** Renders only when src/data/github.json has been filled (by hand or by the Rust service). */
+/** Renders only when src/data/github.json has been filled (by hand or by a script). */
 export default function GithubStats() {
   if (!stats.updated) return null;
   const items = [

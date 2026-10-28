@@ -12,7 +12,7 @@ export type Meta = {
 
 export const WRITING = {
   label: "Writing",
-  blurb: "Notes and longer write-ups on data engineering, with sources.",
+  blurb: "Notes and longer write-ups on backend development, AI and computer vision, with sources.",
 };
 
 // Posts are markdown files in src/content with a small `key: value` header (title,

@@ -3,32 +3,56 @@ import { ArrowUpRight, Check, Copy, Download } from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Reveal } from "@/components/Reveal";
 import ThemeToggle from "@/components/ThemeToggle";
-import ContactLinks from "@/components/ContactLinks";
+import ContactLinks, { ContactIcon, ROW } from "@/components/ContactLinks";
+
+const MAIL_PATH =
+  "M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z";
+
+const TITLE = "Amirali Abbasi | Backend Developer, Python & FastAPI";
+const DESCRIPTION =
+  "Backend developer building APIs with Python and FastAPI, with a background in Java and Spring Boot. Exploring computer vision, AI, machine learning and deep learning.";
+
+const PERSON = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Amirali Abbasi",
+  jobTitle: "Backend Developer",
+  url: "https://amiraliabbasi.ir",
+  sameAs: ["https://github.com/amiralicv", "https://www.linkedin.com/in/amirali-abbasi"],
+  knowsAbout: [
+    "Python",
+    "FastAPI",
+    "Java",
+    "Spring Boot",
+    "PostgreSQL",
+    "Computer Vision",
+    "Machine Learning",
+    "Deep Learning",
+  ],
+};
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Amirali Abbasi | Data Engineering" },
+      { title: TITLE },
       {
         name: "description",
-        content:
-          "M.Sc student in Software Engineering focused on data engineering: batch pipelines, data modeling, and orchestration.",
+        content: DESCRIPTION,
       },
-      { property: "og:title", content: "Amirali Abbasi | Data Engineering" },
+      { property: "og:title", content: TITLE },
       {
         property: "og:description",
-        content:
-          "M.Sc student in Software Engineering focused on data engineering: batch pipelines, data modeling, and orchestration.",
+        content: DESCRIPTION,
       },
       { property: "og:type", content: "profile" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Amirali Abbasi | Data Engineering" },
+      { name: "twitter:title", content: TITLE },
       {
         name: "twitter:description",
-        content:
-          "M.Sc student in Software Engineering focused on data engineering: batch pipelines, data modeling, and orchestration.",
+        content: DESCRIPTION,
       },
     ],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify(PERSON) }],
   }),
   component: Portfolio,
 });
@@ -39,10 +63,12 @@ const EMAIL = "abbasigudarzi@gmail.com";
 
 // Read like the key–value block at the top of a CV.
 const FACTS = [
-  ["Focus", "Data Engineering: batch pipelines, data modeling"],
+  ["Focus", "Backend APIs with Python & FastAPI"],
+  ["Background", "Java & Spring Boot"],
+  ["Exploring", "Computer vision"],
+  ["Learning", "AI · Machine learning · Deep learning"],
   ["Studying", "M.Sc, Software Engineering"],
   ["Degree", "B.Eng, Computer Engineering"],
-  ["Exploring", "Rust, AI & ML"],
   ["Based in", "Tehran, Iran"],
 ];
 
@@ -86,7 +112,7 @@ function CopyEmail() {
       type="button"
       onClick={copy}
       aria-label={copied ? "Email copied" : "Copy email"}
-      className="inline-flex size-11 shrink-0 items-center justify-center rounded-md border border-border text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+      className="inline-flex size-11 shrink-0 items-center justify-center rounded-md text-muted-foreground hover:bg-secondary transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
     >
       {copied ? <Check className="size-4 text-primary" /> : <Copy className="size-4" />}
       <span aria-live="polite" className="sr-only">
@@ -108,7 +134,7 @@ function Portfolio() {
                 <span className="absolute inline-flex size-full animate-ping rounded-md bg-primary opacity-50 motion-reduce:animate-none" />
                 <span className="relative inline-flex size-1.5 rounded-md bg-primary" />
               </span>
-              Open to remote, hybrid &amp; on-site
+              Open to remote, hybrid &amp; on-site roles
             </span>
             <ThemeToggle />
           </Reveal>
@@ -119,14 +145,14 @@ function Portfolio() {
           </Reveal>
           <Reveal delay={140}>
             <p className="mt-4 font-mono text-xs tracking-[0.2em] text-primary uppercase">
-              Data Engineering
+              Backend Developer · Python &amp; FastAPI
             </p>
           </Reveal>
           <Reveal delay={200}>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-foreground/80">
-              M.Sc student in Software Engineering, focused on data engineering. I study and build
-              batch pipelines and data models, and I&apos;m learning AI and Rust along the way. Open
-              to remote, hybrid, and on-site opportunities.
+              I build backend services and APIs with Python and FastAPI, with a background in Java
+              and Spring Boot. Alongside backend work, I&apos;m exploring computer vision and
+              studying AI, machine learning and deep learning from the math up.
             </p>
           </Reveal>
           <Reveal delay={260}>
@@ -169,35 +195,57 @@ function Portfolio() {
           </dl>
         </Section>
 
+        <Section id="experience" label="Experience">
+          <dl className="mt-4">
+            <Reveal>
+              <div className="grid grid-cols-[7rem_1fr] gap-4 border-b border-border py-4 text-sm transition-colors duration-200 hover:border-primary/50 sm:grid-cols-[9rem_1fr] sm:text-base">
+                <dt className="text-muted-foreground">Backend Developer</dt>
+                <dd>
+                  <p>Java · Spring Boot · PostgreSQL</p>
+                  <p className="mt-1 text-muted-foreground">
+                    Built backend features, PostgreSQL data access and integrations with external
+                    APIs.
+                  </p>
+                </dd>
+              </div>
+            </Reveal>
+          </dl>
+        </Section>
+
         <Section id="contact" label="Contact">
-          <Reveal delay={60}>
-            <p className="mt-8 font-display text-5xl leading-[1.02] text-balance sm:text-6xl">
-              Let's build together.
-            </p>
-          </Reveal>
-          <Reveal delay={120}>
-            <p className="mt-4 max-w-xl leading-relaxed text-pretty text-muted-foreground">
-              Open to remote, hybrid, and on-site opportunities.
-            </p>
-          </Reveal>
-          <Reveal delay={180}>
-            {/* Email card: the address is the link, copy sits beside it. */}
-            <div className="mt-8 flex items-center gap-3 rounded-md border border-border bg-card p-2 pl-4">
-              <a
-                href={`mailto:${EMAIL}`}
-                className="group flex min-w-0 flex-1 items-center gap-2 py-2 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
-              >
-                <span className="link-sweep truncate text-base sm:text-xl">{EMAIL}</span>
-                <ArrowUpRight className="size-4 shrink-0 text-muted-foreground transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-              </a>
-              <CopyEmail />
+          <div className="mt-8 grid min-w-0 gap-8 sm:mt-10">
+            <div>
+              <Reveal delay={60}>
+                <p className="font-display text-5xl leading-[1.02] text-balance sm:text-6xl">
+                  Let&apos;s build something.
+                </p>
+              </Reveal>
+              <Reveal delay={120}>
+                <p className="mt-4 max-w-sm leading-relaxed text-pretty text-muted-foreground">
+                  Open to backend, Python and AI roles: remote, hybrid or on-site.
+                </p>
+              </Reveal>
             </div>
-          </Reveal>
-          <Reveal delay={240}>
-            <div className="mt-6">
-              <ContactLinks />
-            </div>
-          </Reveal>
+            <Reveal delay={180}>
+              <ul className="w-full min-w-0 overflow-hidden rounded-md border border-border bg-card">
+                <li className="flex items-stretch">
+                  <a href={`mailto:${EMAIL}`} className={ROW}>
+                    <ContactIcon path={MAIL_PATH} />
+                    <span className="w-16 shrink-0 sm:w-20 font-mono text-[11px] tracking-[0.2em] text-muted-foreground uppercase">
+                      Email
+                    </span>
+                    <span className="link-sweep min-w-0 flex-1 truncate text-base sm:text-lg">
+                      {EMAIL}
+                    </span>
+                  </a>
+                  <div className="flex items-center border-l border-border px-2">
+                    <CopyEmail />
+                  </div>
+                </li>
+                <ContactLinks />
+              </ul>
+            </Reveal>
+          </div>
         </Section>
       </main>
 

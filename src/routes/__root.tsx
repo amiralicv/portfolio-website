@@ -69,31 +69,32 @@ function ErrorComponent({ error, reset }: { error: unknown; reset: () => void })
   );
 }
 
+const TITLE = "Amirali Abbasi | Backend Developer, Python & FastAPI";
+const DESCRIPTION =
+  "Backend developer building APIs with Python and FastAPI, with a background in Java and Spring Boot. Exploring computer vision, AI, machine learning and deep learning.";
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Amirali Abbasi | Data Engineering" },
+      { title: TITLE },
       {
         name: "description",
-        content:
-          "M.Sc student in Software Engineering focused on data engineering: batch pipelines, data modeling, and orchestration.",
+        content: DESCRIPTION,
       },
       { name: "author", content: "Amirali Abbasi" },
-      { property: "og:title", content: "Amirali Abbasi | Data Engineering" },
+      { property: "og:title", content: TITLE },
       {
         property: "og:description",
-        content:
-          "M.Sc student in Software Engineering focused on data engineering: batch pipelines, data modeling, and orchestration.",
+        content: DESCRIPTION,
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Amirali Abbasi | Data Engineering" },
+      { name: "twitter:title", content: TITLE },
       {
         name: "twitter:description",
-        content:
-          "M.Sc student in Software Engineering focused on data engineering: batch pipelines, data modeling, and orchestration.",
+        content: DESCRIPTION,
       },
     ],
     links: [
