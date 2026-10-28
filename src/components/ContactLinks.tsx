@@ -41,10 +41,10 @@ export default function ContactLinks() {
         <li key={label} className="flex border-t border-border">
           <a href={href} target="_blank" rel="noreferrer noopener" className={ROW}>
             <ContactIcon path={path} />
-            <span className="w-16 shrink-0 sm:w-20 font-mono text-[11px] tracking-[0.2em] text-muted-foreground uppercase">
+            <span className="w-16 shrink-0 max-sm:hidden sm:w-20 font-mono text-[11px] tracking-[0.2em] text-muted-foreground uppercase">
               {label}
             </span>
-            <span className="link-sweep min-w-0 flex-1 truncate text-base sm:text-lg">
+            <span className="link-sweep min-w-0 flex-1 truncate text-base sm:text-lg xl:text-base">
               {handle}
             </span>
             <ArrowUpRight
