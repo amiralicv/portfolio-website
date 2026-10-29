@@ -8,9 +8,9 @@ import ContactLinks, { ContactIcon, ROW } from "@/components/ContactLinks";
 const MAIL_PATH =
   "M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z";
 
-const TITLE = "Amirali Abbasi | Backend Developer, Python & FastAPI";
+const TITLE = "Amirali Abbasi | Backend Developer, TypeScript & NestJS";
 const DESCRIPTION =
-  "Backend developer building APIs with Python and FastAPI, with a background in Java and Spring Boot. Exploring computer vision, AI, machine learning and deep learning.";
+  "Backend developer working with TypeScript and NestJS, with a background in Java and Spring Boot. Learning software architecture and design systems.";
 
 const PERSON = {
   "@context": "https://schema.org",
@@ -19,16 +19,7 @@ const PERSON = {
   jobTitle: "Backend Developer",
   url: "https://amiraliabbasi.ir",
   sameAs: ["https://github.com/amiralicv", "https://www.linkedin.com/in/amirali-abbasi"],
-  knowsAbout: [
-    "Python",
-    "FastAPI",
-    "Java",
-    "Spring Boot",
-    "PostgreSQL",
-    "Computer Vision",
-    "Machine Learning",
-    "Deep Learning",
-  ],
+  knowsAbout: ["TypeScript", "NestJS", "Node.js", "Java", "Spring Boot", "PostgreSQL"],
 };
 
 export const Route = createFileRoute("/")({
@@ -63,10 +54,10 @@ const EMAIL = "abbasigudarzi@gmail.com";
 
 // Read like the key–value block at the top of a CV.
 const FACTS = [
-  ["Focus", "Backend APIs with Python & FastAPI"],
+  ["Focus", "TypeScript full-stack development"],
+  ["Learning", "Software architecture & design systems"],
+  ["Passionate about", "Product design & user experience"],
   ["Background", "Java & Spring Boot"],
-  ["Exploring", "Computer vision"],
-  ["Learning", "AI · Machine learning · Deep learning"],
   ["Studying", "M.Sc, Software Engineering"],
   ["Degree", "B.Eng, Computer Engineering"],
   ["Based in", "Tehran, Iran"],
@@ -143,13 +134,13 @@ function Portfolio() {
         </div>
         <div className="pt-10 lg:pt-12">
           <Reveal delay={80}>
-            <h1 className="text-[clamp(2.5rem,10vw,6rem)] leading-[0.92] font-normal tracking-tight">
+            <h1 className="text-[clamp(2.25rem,7.5vw,5.5rem)] leading-[0.95] font-semibold tracking-tight">
               Amirali Abbasi
             </h1>
           </Reveal>
           <Reveal delay={140}>
             <p className="mt-5 font-mono text-xs tracking-[0.2em] text-primary uppercase">
-              Backend Developer · Python &amp; FastAPI
+              Backend Developer · TypeScript &amp; NestJS
             </p>
           </Reveal>
         </div>
@@ -157,9 +148,9 @@ function Portfolio() {
           <div>
             <Reveal delay={200}>
               <p className="max-w-md text-lg leading-relaxed text-foreground/80">
-                I build backend services and APIs with Python and FastAPI, with a background in Java
-                and Spring Boot. Alongside backend work, I&apos;m exploring computer vision and
-                studying AI, machine learning and deep learning from the math up.
+                I build backend services and APIs with TypeScript and NestJS, with a background in
+                Java and Spring Boot. Right now I&apos;m learning software architecture and design
+                systems.
               </p>
             </Reveal>
             <Reveal delay={260}>
@@ -175,9 +166,6 @@ function Portfolio() {
                   className={`${BUTTON} border border-border hover:bg-secondary`}
                 >
                   Projects
-                </Link>
-                <Link to="/writing" className={`${BUTTON} border border-border hover:bg-secondary`}>
-                  Writing
                 </Link>
                 <a
                   href={RESUME_URL}
@@ -223,7 +211,7 @@ function Portfolio() {
               Let&apos;s build something.
             </p>
             <p className="mt-2 max-w-sm text-sm leading-relaxed text-pretty text-muted-foreground">
-              Open to backend, Python and AI roles: remote, hybrid or on-site.
+              Open to backend, TypeScript and NestJS roles: remote, hybrid or on-site.
             </p>
           </Reveal>
           <Reveal delay={180}>

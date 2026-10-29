@@ -1,3 +1,4 @@
+import WaveLines from "@/components/WaveLines";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
@@ -69,9 +70,9 @@ function ErrorComponent({ error, reset }: { error: unknown; reset: () => void })
   );
 }
 
-const TITLE = "Amirali Abbasi | Backend Developer, Python & FastAPI";
+const TITLE = "Amirali Abbasi | Backend Developer, TypeScript & NestJS";
 const DESCRIPTION =
-  "Backend developer building APIs with Python and FastAPI, with a background in Java and Spring Boot. Exploring computer vision, AI, machine learning and deep learning.";
+  "Backend developer working with TypeScript and NestJS, with a background in Java and Spring Boot. Learning software architecture and design systems.";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
@@ -84,6 +85,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content: DESCRIPTION,
       },
       { name: "author", content: "Amirali Abbasi" },
+      { name: "theme-color", content: "#18122f" },
       { property: "og:title", content: TITLE },
       {
         property: "og:description",
@@ -98,11 +100,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
     links: [
+      { rel: "manifest", href: "/manifest.webmanifest" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Sans:wght@400;500&family=JetBrains+Mono:wght@400&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap",
       },
       {
         rel: "stylesheet",
@@ -128,8 +132,17 @@ function RootShell({ children }: { children: ReactNode }) {
           }}
         />
         <HeadContent />
+        {/* Registers the service worker (installability + offline copy). Production only: it would cache dev assets. */}
+        {import.meta.env.PROD && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")})`,
+            }}
+          />
+        )}
       </head>
       <body>
+        <WaveLines />
         {children}
         <Scripts />
       </body>
